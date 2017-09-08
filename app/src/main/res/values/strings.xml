@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Rider</string>
+    <string name="strSettings">MySettings</string>
+    <string name="strOnLogin">OnLogin</string>
+
+    <string name="facebook_app_id">265133800665169</string>
+    <string name="fb_login_protocol_scheme">fb265133800665169</string>
 </resources>
