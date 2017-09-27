@@ -15,9 +15,10 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:background="@drawable/search_bar"
-        android:hint="         Search"
+        android:hint="Search events"
         android:textColorHint="@color/colorTextSearchBar"
-
+        android:textColor="@color/colorTextSearchBar"
+        android:paddingStart="40dp"
         />
 
     <ImageView
@@ -38,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/etSearchBar"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimary"
         android:layout_marginTop="10dp"
         />
 

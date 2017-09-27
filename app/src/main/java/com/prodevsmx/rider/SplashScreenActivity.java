@@ -14,7 +14,12 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        checkSession();
+        Intent goToActivity = new Intent(SplashScreenActivity.this, ActivityLand.class);
+        startActivity(goToActivity);
+        SplashScreenActivity.this.finish();
+
+
+        //checkSession();
     }
 
     private void checkSession(){
