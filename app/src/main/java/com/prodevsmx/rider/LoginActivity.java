@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     private void initializeControls(){
 
         callbackManager = CallbackManager.Factory.create();
-        fbLogin = (LoginButton) findViewById(R.id.loginButton);
+        fbLogin = (LoginButton) findViewById(R.id.login_button);
 
         fbLogin.setReadPermissions(permissions);
     }

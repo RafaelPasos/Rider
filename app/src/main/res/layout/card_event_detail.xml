@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <ImageView
+                android:id="@+id/ivEventImage"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                />
+
+            <TextView
+                android:id="@+id/tvEventTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/ivEventImage"
+                android:padding="5dp"
+                android:text="Event Name"
+                android:textAppearance="@android:style/TextAppearance"
+                android:textColor="@color/colorAccent"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/tv_EventDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Event Detail"
+                android:textColor="@color/colorPrimary"
+                android:layout_below="@+id/tvEventTitle"
+                android:layout_toEndOf="@id/ivEventImage"
+                android:textSize="16sp"
+                android:padding="5dp"
+                />
+            <TextView
+                android:id="@+id/tv_EventDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Event Date"
+                android:textColor="@color/colorPrimary"
+                android:layout_below="@+id/tv_EventDetail"
+                android:layout_toEndOf="@id/ivEventImage"
+                android:textSize="16sp"
+                android:padding="5dp"
+                />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/tv_EventStartTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Event start hour"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+
+                />
+
+            <TextView
+                android:id="@+id/tv_EventEndTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Event end hour"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
