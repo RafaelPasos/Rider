@@ -29,6 +29,8 @@
         android:paddingStart="@dimen/sizeBarMarginStart"
         android:paddingEnd="@dimen/marginUIComponent"
         android:inputType="text"
+        android:focusable="false"
+        android:focusedByDefault="false"
         />
 
     <ImageView
