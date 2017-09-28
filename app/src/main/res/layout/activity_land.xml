@@ -1,60 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:design="http://schemas.android.com/apk/res-auto"
     tools:context="com.prodevsmx.rider.ActivityLand">
 
+    <include
+        android:id="@+id/include_toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        layout="@layout/rider_toolbar"
+        >
+    </include>
 
     <EditText
+        android:layout_below="@id/include_toolbar"
         android:id="@+id/etSearchBar"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginTop="@dimen/searchBarMargin"
+        android:layout_marginLeft="@dimen/searchBarMargin"
+        android:layout_marginRight="@dimen/searchBarMargin"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="@dimen/searchBarSize"
         android:background="@drawable/search_bar"
-        android:hint="Search events"
+        android:hint="@string/searchEvents"
         android:textColorHint="@color/colorTextSearchBar"
         android:textColor="@color/colorTextSearchBar"
-        android:paddingStart="40dp"
+        android:paddingStart="@dimen/sizeBarMarginStart"
+        android:paddingEnd="@dimen/marginUIComponent"
+        android:inputType="text"
         />
 
     <ImageView
         android:id="@+id/ivSearchIC"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginStart="30dp"
+        android:layout_width="@dimen/sizeSearchIc"
+        android:layout_height="@dimen/sizeSearchIc"
+        android:layout_below="@id/include_toolbar"
+        android:layout_marginTop="@dimen/marginSearchTop"
+        android:layout_marginStart="@dimen/marginSearchIcStart"
         android:src="@mipmap/ic_search"
         />
 
 
     <TextView
         android:id="@+id/tvEventsNearby"
-        android:textSize="18sp"
-        android:text="Events nearby Guadalajara, Jal"
+        android:textSize="@dimen/textSizeDescr"
+        android:text="@string/eventsNear"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/etSearchBar"
         android:textColor="@color/colorPrimary"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/marginUIComponent"
         />
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        design:menu="@menu/bottom_navigation_tab"
+        design:itemBackground="@color/colorPrimaryDark"
+        design:itemIconTint="@drawable/nav_item_color_state"
+        design:itemTextColor="@drawable/nav_item_text_state"
+        >
+    </android.support.design.widget.BottomNavigationView>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewEventsNearby"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tvEventsNearby"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_margin="@dimen/marginUIComponent"
+        android:layout_above="@+id/bottomNav"
         >
 
     </android.support.v7.widget.RecyclerView>
-
-
 
 </RelativeLayout>

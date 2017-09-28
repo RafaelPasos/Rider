@@ -5,4 +5,12 @@
 
     <string name="facebook_app_id">265133800665169</string>
     <string name="fb_login_protocol_scheme">fb265133800665169</string>
+    <string name="eventsNear">Events near Guadalajara, Jal.</string>
+    <string name="searchEvents">Search events</string>
+    <string name="requestsMenu">Requests</string>
+    <string name="VehiclesMenu">Vehicles</string>
+    <string name="exploreMenu">Explore</string>
+    <string name="past_ridesMenu">Past rides</string>
+    <string name="next_ridesMenu">Next rides</string>
+    <string name="appNameToolbar">RIDER</string>
 </resources>

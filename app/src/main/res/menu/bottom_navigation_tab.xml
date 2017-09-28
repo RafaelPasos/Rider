@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navBRequest"
+        android:title="@string/requestsMenu"
+        android:icon="@drawable/ic_person_add"
+        android:enabled="true"
+        />
+
+    <item
+        android:id="@+id/navBVehicles"
+        android:title="@string/VehiclesMenu"
+        android:icon="@drawable/ic_car"
+        android:enabled="true"
+        />
+
+    <item
+        android:id="@+id/navBExplore"
+        android:title="@string/exploreMenu"
+        android:icon="@drawable/ic_explore"
+        android:enabled="true"
+        />
+
+    <item
+        android:id="@+id/navBPastRides"
+        android:title="@string/past_ridesMenu"
+        android:icon="@drawable/ic_past"
+        android:enabled="true"
+        />
+
+    <item
+        android:id="@+id/navBNextRides"
+        android:title="@string/next_ridesMenu"
+        android:icon="@drawable/ic_next_trip"
+        android:enabled="true"
+        />
+
+</menu>

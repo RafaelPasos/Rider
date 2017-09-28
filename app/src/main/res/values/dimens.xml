@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textSizeDescr">18sp</dimen>
+    <dimen name="searchBarSize">30dp</dimen>
+    <dimen name="searchBarMargin">20dp</dimen>
+    <dimen name="sizeBarMarginStart">40dp</dimen>
+    <dimen name="sizeSearchIc">25dp</dimen>
+    <dimen name="marginSearchTop">23dp</dimen>
+    <dimen name="marginSearchIcStart">30dp</dimen>
+    <dimen name="marginUIComponent">10dp</dimen>
+</resources>
