@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:design="http://schemas.android.com/apk/res-auto"
-    tools:context="com.prodevsmx.rider.ActivityLand">
+    tools:context="com.prodevsmx.rider.ActivityLand"
+    >
 
     <include
         android:id="@+id/include_toolbar"
@@ -30,7 +31,7 @@
         android:paddingEnd="@dimen/marginUIComponent"
         android:inputType="text"
         android:focusable="false"
-        android:focusedByDefault="false"
+        android:elevation="@dimen/elevationSearchBar"
         />
 
     <ImageView
@@ -41,6 +42,7 @@
         android:layout_marginTop="@dimen/marginSearchTop"
         android:layout_marginStart="@dimen/marginSearchIcStart"
         android:src="@mipmap/ic_search"
+        android:elevation="3dp"
         />
 
 
@@ -65,8 +67,19 @@
         design:itemBackground="@color/colorPrimaryDark"
         design:itemIconTint="@drawable/nav_item_color_state"
         design:itemTextColor="@drawable/nav_item_text_state"
+        android:elevation="@dimen/navBarElevation"
+        android:background="@android:color/white"
         >
     </android.support.design.widget.BottomNavigationView>
+
+    <View
+        android:id="@+id/shadow_view"
+        android:layout_above="@id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/shadow_gradient"
+        />
 
 
     <android.support.v7.widget.RecyclerView
@@ -77,7 +90,6 @@
         android:layout_margin="@dimen/marginUIComponent"
         android:layout_above="@+id/bottomNav"
         >
-
     </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

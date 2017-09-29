@@ -7,6 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -27,20 +28,18 @@ public class ActivityLand extends BaseActivity {
     @BindView(R.id.tvEventsNearby)
     TextView tvEventsNearby;
 
-    @BindView(R.id.rider_toolbar)
+    //@BindView(R.id.rider_toolbar)
     android.support.v7.widget.Toolbar riderToolbar;
 
-    @BindView(R.id.bottomNav)
     BottomNavigationView navigationBar;
 
+    BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-        navigationBar.getMenu().findItem(R.id.navBExplore).setChecked(true);
         initializeUIElements();
-
     }
 
     @Override
@@ -52,36 +51,49 @@ public class ActivityLand extends BaseActivity {
     public void initializeUIElements(){
         Typeface type = Typeface.createFromAsset(this.getAssets(),"fonts/myraidpro.ttf");
         tvEventsNearby.setTypeface(type);
+        riderToolbar = findViewById(R.id.rider_toolbar);
+        riderToolbar.setTitle("");
         setSupportActionBar(riderToolbar);
-        navigationBar.getMenu().findItem(R.id.navBExplore).setChecked(true);
-        navigationBar.setOnNavigationItemSelectedListener(
-             new BottomNavigationView.OnNavigationItemSelectedListener() {
-                 @Override
-                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                     switch (item.getItemId()) {
-                         case R.id.navBExplore:
-                             //TODO: GO TO EXPLORER PAGE
-                             break;
-                         case R.id.navBRequest:
-                             //TODO: GO TO REQUESTS PAGE
-                             break;
-                         case R.id.navBVehicles:
-                             //TODO: GO TO VEHICLES PAGE
-                             break;
-                         case R.id.navBPastRides:
-                             //TODO: GO TO PAST RIDES PAGE
-                             break;
-                         case R.id.navBNextRides:
-                             //TODO: GO TO NEXT RIDES PAGE
-                             break;
-                        }
-                     return true;
-                 }
-             }
-        );
+
+        navigationBar = findViewById(R.id.bottomNav);
+        addBottomNavigationListener();
+        navigationBar.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigationBar.setSelectedItemId(R.id.navBExplore);
     }
 
-    /*
+    public void addBottomNavigationListener(){
+        mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navBExplore:
+                        Log.d("crayola", "hola crayola");
+                        //TODO: GO TO EXPLORER PAGE
+                        return true;
+                    case R.id.navBRequest:
+                        //TODO: GO TO REQUESTS PAGE
+                        Log.d("crayola", "con la pistola");
+                        return true;
+                    case R.id.navBVehicles:
+                        //TODO: GO TO VEHICLES PAGE
+                        Log.d("crayola", "ruperta y manola");
+                        return true;
+                    case R.id.navBPastRides:
+                        //TODO: GO TO PAST RIDES PAGE
+                        Log.d("crayola", "le gusta la trola");
+                        return true;
+                    case R.id.navBNextRides:
+                        //TODO: GO TO NEXT RIDES PAGE
+                        Log.d("crayola", "si es en barcelona");
+                        return true;
+                }
+                return false;
+            }
+        };
+    }
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
@@ -93,11 +105,11 @@ public class ActivityLand extends BaseActivity {
         int id = item.getItemId();
         if (id == R.id.profileBtn) {
             //TODO: GO TO PROFILE PAGE
+            Log.d("crayola", "con la tia bartola");
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    */
 
 }
