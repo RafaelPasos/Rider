@@ -14,4 +14,6 @@
     <string name="next_ridesMenu">Next rides</string>
     <string name="appNameToolbar">RIDER</string>
     <string name="my_profile">My Profile</string>
+    <string name="searchbar">SearchBar</string>
+    <string name="activity">Activity</string>
 </resources>

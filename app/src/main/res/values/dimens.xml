@@ -10,4 +10,5 @@
     <dimen name="marginUIComponent">10dp</dimen>
     <dimen name="elevationSearchBar">2dp</dimen>
     <dimen name="navBarElevation">8dp</dimen>
+    <dimen name="elevationSearchBarImage">3dp</dimen>
 </resources>
