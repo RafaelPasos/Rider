@@ -25,5 +25,15 @@
         android:layout_centerHorizontal="true"
         />
 
+    <Button
+        android:id="@+id/btnLogOut"
+        android:background="@drawable/spacer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log out"
+        android:layout_margin="@dimen/marginUIComponent"
+        android:layout_below="@id/ivUserProfilePicture"
+        />
+
 
 </RelativeLayout>
