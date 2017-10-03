@@ -11,7 +11,7 @@
 
     <style name="AppThemeCustom" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
-        <item name="android:windowBackground">@drawable/spacer</item>
+        <!--><item name="android:windowBackground">@drawable/spacer</item><-->
         <item name="windowNoTitle">true</item>
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
