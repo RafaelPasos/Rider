@@ -2,6 +2,7 @@ package com.prodevsmx.rider;
 
 import android.app.Fragment;
 import android.content.res.ColorStateList;
+import android.content.res.XmlResourceParser;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -26,7 +27,6 @@ public class ActivityLand extends AppCompatActivity {
     BottomNavigationView navigationBar;
     BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
     FragmentManager fragmentManager;
-    FragmentTransaction transaction;
     int[][] states;
     int[] colors;
     ColorStateList myList;

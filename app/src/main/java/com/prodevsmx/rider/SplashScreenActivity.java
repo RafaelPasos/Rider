@@ -12,7 +12,6 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
 
         Intent goToActivity = new Intent(SplashScreenActivity.this, ActivityLand.class);
         startActivity(goToActivity);
