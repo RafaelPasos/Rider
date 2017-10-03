@@ -1,6 +1,8 @@
 package com.prodevsmx.rider;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,10 +12,15 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -25,10 +32,11 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
+
+        setContentView(R.layout.activity_login);
 
         initializeControls();
         fbLogin();
@@ -37,29 +45,36 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initializeControls(){
 
-        callbackManager = CallbackManager.Factory.create();
         fbLogin = (LoginButton) findViewById(R.id.login_button);
+        callbackManager = CallbackManager.Factory.create();
 
         fbLogin.setReadPermissions(permissions);
     }
 
     private void fbLogin(){
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        fbLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Log.d("loginToken", loginResult.getAccessToken().getToken());
-                token = loginResult.getAccessToken();
-                //TODO: Go to main activity
+                //TODO: GO TO MAIN ACTIVITY
+                SharedPreferences settings = getSharedPreferences(getString(R.string.strSettings), Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putBoolean(getString(R.string.strOnLogin), true);
+                editor.commit();
+
+                Intent goToActivity = new Intent(LoginActivity.this, ActivityLand.class);
+                startActivity(goToActivity);
+                LoginActivity.this.finish();
+
             }
 
             @Override
             public void onCancel() {
-                Log.d("loginToken", "cancel");
+                Log.d("LoginMesssage", "error");
             }
 
             @Override
             public void onError(FacebookException error) {
-                Log.d("loginToken", error.getMessage());
+                Log.d("LoginMesssage", error.getMessage().toString());
             }
         });
     }
@@ -69,4 +84,5 @@ public class LoginActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
 }

@@ -4,10 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <meta-data
-        android:name="com.facebook.sdk.ApplicationId"
-        android:value="@string/facebook_app_id" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,6 +20,11 @@
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".ActivityLand" android:theme="@style/AppThemeCustom"/>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
     </application>
 
 </manifest>

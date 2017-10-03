@@ -13,12 +13,12 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent goToActivity = new Intent(SplashScreenActivity.this, ActivityLand.class);
+        /*Intent goToActivity = new Intent(SplashScreenActivity.this, ActivityLand.class);
         startActivity(goToActivity);
-        SplashScreenActivity.this.finish();
+        SplashScreenActivity.this.finish();*/
 
 
-        //checkSession();
+        checkSession();
     }
 
     private void checkSession(){
