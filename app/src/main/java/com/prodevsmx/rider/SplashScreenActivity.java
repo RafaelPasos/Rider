@@ -28,7 +28,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         boolean bLogin = settings.getBoolean(getString(R.string.strOnLogin), false);
 
         if(bLogin){
-            //TODO: Go to  main activity
+
+            Intent goToActivity = new Intent(SplashScreenActivity.this, ActivityLand.class);
+            startActivity(goToActivity);
+            SplashScreenActivity.this.finish();
         }else{
             Intent goToLogin = new Intent(SplashScreenActivity.this, LoginActivity.class);
             startActivity(goToLogin);
