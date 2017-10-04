@@ -1,6 +1,7 @@
 package com.prodevsmx.rider.fragments;
 
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
+import com.prodevsmx.rider.ActivityLand;
 import com.prodevsmx.rider.R;
 import com.prodevsmx.rider.utils.DrawableToBitmap;
 import com.prodevsmx.rider.utils.ImageRounder;
@@ -40,7 +42,7 @@ public class FragmentProfile extends android.support.v4.app.Fragment{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        FacebookSdk.sdkInitialize(getApplicationContext());
+        FacebookSdk.sdkInitialize(getActivity());
 
         logOut = view.findViewById(R.id.btnLogOut);
         round = view.findViewById(R.id.ivUserProfilePicture);
