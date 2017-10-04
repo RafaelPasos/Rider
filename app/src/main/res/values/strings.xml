@@ -16,6 +16,7 @@
     <string name="my_profile">My Profile</string>
     <string name="searchbar">SearchBar</string>
     <string name="activity">Activity</string>
+    <string name="tokenApiGraph">TokenApiGraph</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

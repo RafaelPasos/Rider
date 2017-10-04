@@ -27,6 +27,8 @@ public class LoginActivity extends AppCompatActivity {
     LoginButton fbLogin;
     CallbackManager callbackManager;
     AccessToken token;
+    SharedPreferences settings;
+    SharedPreferences.Editor editor;
     String [] permissions = {"email", "user_about_me", "user_birthday", "user_events", "user_photos", "public_profile,"};
 
     @Override
@@ -48,6 +50,9 @@ public class LoginActivity extends AppCompatActivity {
         fbLogin = (LoginButton) findViewById(R.id.login_button);
         callbackManager = CallbackManager.Factory.create();
 
+        settings = getSharedPreferences(getString(R.string.strSettings), Context.MODE_PRIVATE);
+        editor = settings.edit();
+
         fbLogin.setReadPermissions(permissions);
     }
 
@@ -55,10 +60,10 @@ public class LoginActivity extends AppCompatActivity {
         fbLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                //TODO: GO TO MAIN ACTIVITY
-                SharedPreferences settings = getSharedPreferences(getString(R.string.strSettings), Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = settings.edit();
+
+                Log.d("TokenFacebook", loginResult.getAccessToken().toString());
                 editor.putBoolean(getString(R.string.strOnLogin), true);
+                editor.putString(getString(R.string.tokenApiGraph), loginResult.getAccessToken().toString());
                 editor.commit();
 
                 Intent goToActivity = new Intent(LoginActivity.this, ActivityLand.class);
