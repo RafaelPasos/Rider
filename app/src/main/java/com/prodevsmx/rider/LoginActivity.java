@@ -24,7 +24,7 @@ import com.facebook.appevents.AppEventsLogger;
 
 public class LoginActivity extends AppCompatActivity {
 
-    LoginButton fbLogin;
+    LoginButton fbLogIn;
     CallbackManager callbackManager;
     AccessToken token;
     SharedPreferences settings;
@@ -47,17 +47,17 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initializeControls(){
 
-        fbLogin = (LoginButton) findViewById(R.id.login_button);
+        fbLogIn = (LoginButton) findViewById(R.id.login_button);
         callbackManager = CallbackManager.Factory.create();
 
         settings = getSharedPreferences(getString(R.string.strSettings), Context.MODE_PRIVATE);
         editor = settings.edit();
 
-        fbLogin.setReadPermissions(permissions);
+        fbLogIn.setReadPermissions(permissions);
     }
 
     private void fbLogin(){
-        fbLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        fbLogIn.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
 

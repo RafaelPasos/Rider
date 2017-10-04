@@ -9,16 +9,22 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.prodevsmx.rider.R;
 import com.prodevsmx.rider.utils.DrawableToBitmap;
 import com.prodevsmx.rider.utils.ImageRounder;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 
 public class FragmentProfile extends android.support.v4.app.Fragment{
 
     ImageView round;
+    Button logOut;
 
     public FragmentProfile() {
     }
@@ -34,11 +40,22 @@ public class FragmentProfile extends android.support.v4.app.Fragment{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
+        logOut = view.findViewById(R.id.btnLogOut);
         round = view.findViewById(R.id.ivUserProfilePicture);
         Drawable d = getResources().getDrawable(R.drawable.elonmusk, getActivity().getTheme());
         Bitmap b = DrawableToBitmap.drawableToBitmap(d);
         b = ImageRounder.getRoundedBitmap(b);
         round.setImageBitmap(b);
 
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginManager.getInstance().logOut();
+            }
+        });
+
     }
+
 }

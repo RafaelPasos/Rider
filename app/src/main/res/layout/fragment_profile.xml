@@ -33,7 +33,7 @@
         android:text="Log out"
         android:layout_margin="@dimen/marginUIComponent"
         android:layout_below="@id/ivUserProfilePicture"
-        />
+        android:onClick="onLogOut"/>
 
 
 </RelativeLayout>
