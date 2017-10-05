@@ -65,18 +65,6 @@ public class FragmentProfile extends android.support.v4.app.Fragment{
         b = ImageRounder.getRoundedBitmap(b);
         round.setImageBitmap(b);
 
-        //fbLogOut();
-
-        /*logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editor.putBoolean(getString(R.string.strOnLogin), false);
-                editor.commit();
-                Intent goTo = new Intent(getActivity(), LoginActivity.class);
-                startActivity(goTo);
-            }
-        });*/
-
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,34 +86,5 @@ public class FragmentProfile extends android.support.v4.app.Fragment{
         editor = settings.edit();
         callbackManager = CallbackManager.Factory.create();
     }
-
-    /*public void fbLogOut(){
-        logOut.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-
-                editor.putBoolean(getString(R.string.strOnLogin), false);
-                editor.commit();
-                Intent goTo = new Intent(getActivity(), LoginActivity.class);
-                startActivity(goTo);
-            }
-
-            @Override
-            public void onCancel() {
-                Log.d("LoginMessage", "error");
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.d("LoginMessage", error.getMessage().toString());
-            }
-        });
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-    }*/
 
 }
