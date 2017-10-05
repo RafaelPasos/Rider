@@ -26,9 +26,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences(getString(R.string.strSettings), Context.MODE_PRIVATE);
 
         boolean bLogin = settings.getBoolean(getString(R.string.strOnLogin), false);
-        bLogin = true;
-        if(bLogin){
 
+        if(bLogin){
             Intent goToActivity = new Intent(SplashScreenActivity.this, ActivityLand.class);
             startActivity(goToActivity);
             SplashScreenActivity.this.finish();
