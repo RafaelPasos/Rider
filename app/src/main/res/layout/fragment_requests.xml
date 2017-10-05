@@ -1,14 +1,28 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.prodevsmx.rider.fragments.FragmentRequests">
 
+
     <TextView
+        android:id="@+id/tvPendingRequests"
+        android:textSize="@dimen/textSizeDescr"
+        android:text="@string/pending_ride_requests"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="@dimen/marginUIComponent"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewPendingRequests"
+        android:layout_marginTop="@dimen/marginUIComponent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/requestsMenu"
-        android:gravity="center"
-        android:textSize="@dimen/textSizeTitle"
-        />
-</FrameLayout>
+        android:layout_below="@id/tvPendingRequests"
+        >
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

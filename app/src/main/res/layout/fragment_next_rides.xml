@@ -1,16 +1,59 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.prodevsmx.rider.fragments.FragmentNextRides"
     >
 
-    <TextView
+    <EditText
+        android:layout_below="@id/include_toolbar"
+        android:id="@+id/etSearchBarNextRides"
+        android:layout_marginTop="@dimen/searchBarMargin"
+        android:layout_marginLeft="@dimen/searchBarMargin"
+        android:layout_marginRight="@dimen/searchBarMargin"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/next_ridesMenu"
-        android:gravity="center"
-        android:textSize="@dimen/textSizeTitle"
+        android:layout_height="@dimen/searchBarSize"
+        android:background="@drawable/search_bar"
+        android:hint="@string/search_rides"
+        android:textColorHint="@color/colorTextSearchBar"
+        android:textColor="@color/colorTextSearchBar"
+        android:paddingStart="@dimen/sizeBarMarginStart"
+        android:paddingEnd="@dimen/marginUIComponent"
+        android:inputType="text"
+        android:focusable="false"
+        android:elevation="@dimen/elevationSearchBar"
         />
 
-</FrameLayout>
+    <ImageView
+        android:contentDescription="@string/searchbar"
+        android:id="@+id/ivSearchIC"
+        android:layout_width="@dimen/sizeSearchIc"
+        android:layout_height="@dimen/sizeSearchIc"
+        android:layout_below="@id/include_toolbar"
+        android:layout_marginTop="@dimen/marginSearchTop"
+        android:layout_marginStart="@dimen/marginSearchIcStart"
+        android:src="@mipmap/ic_search"
+        android:elevation="@dimen/elevationSearchBarImage"
+        />
+
+    <TextView
+        android:id="@+id/tvNextRides"
+        android:textSize="@dimen/textSizeDescr"
+        android:text="@string/your_next_rides"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etSearchBarNextRides"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="@dimen/marginUIComponent"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewNextRides"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tvNextRides"
+        >
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

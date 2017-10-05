@@ -12,4 +12,5 @@
     <dimen name="navBarElevation">8dp</dimen>
     <dimen name="elevationSearchBarImage">3dp</dimen>
     <dimen name="textSizeTitle">32sp</dimen>
+    <dimen name="elevationFAB">12dp</dimen>
 </resources>

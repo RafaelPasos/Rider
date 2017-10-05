@@ -21,4 +21,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="provisionalUserName">Juan Jose</string>
+    <string name="search_rides">Search rides</string>
+    <string name="your_next_rides">Your next rides with Rider</string>
+    <string name="rides_participated">Rides you have participated on</string>
+    <string name="pending_ride_requests">Pending ride requests</string>
+    <string name="user_car_list">Here\'s a list of your registered cars</string>
 </resources>

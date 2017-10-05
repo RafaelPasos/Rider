@@ -1,15 +1,54 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.prodevsmx.rider.fragments.FragmentVehicle">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/VehiclesMenu"
-        android:gravity="center"
+        android:id="@+id/tvUserNameVehicles"
         android:textSize="@dimen/textSizeTitle"
+        android:text="@string/provisionalUserName"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:layout_marginTop="@dimen/marginUIComponent"
         />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tvRegisteredVehicles"
+        android:textSize="@dimen/textSizeDescr"
+        android:text="@string/user_car_list"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="@dimen/marginUIComponent"
+        android:layout_below="@id/tvUserNameVehicles"
+        />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAddVehicle"
+        app:rippleColor="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/marginUIComponent"
+        app:fabSize="auto"
+        android:src="@drawable/ic_add_white"
+        android:elevation="@dimen/elevationFAB"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewPendingRequests"
+        android:layout_marginTop="@dimen/marginUIComponent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tvRegisteredVehicles"
+        android:layout_above="@id/fabAddVehicle"
+        >
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

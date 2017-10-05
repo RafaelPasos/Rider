@@ -7,9 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,20 +15,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.facebook.CallbackManager;
-import com.facebook.FacebookActivity;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
+
 import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
-import com.prodevsmx.rider.ActivityLand;
+
 import com.prodevsmx.rider.LoginActivity;
 import com.prodevsmx.rider.R;
 import com.prodevsmx.rider.utils.DrawableToBitmap;
 import com.prodevsmx.rider.utils.ImageRounder;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
 
 
 public class FragmentProfile extends android.support.v4.app.Fragment{
