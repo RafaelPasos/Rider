@@ -20,7 +20,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="provisionalUserName">Juan Jose</string>
+    <string name="provisionalUserName">Steve</string>
     <string name="search_rides">Search rides</string>
     <string name="your_next_rides">Your next rides with Rider</string>
     <string name="rides_participated">Rides you have participated on</string>

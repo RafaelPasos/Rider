@@ -1,8 +1,12 @@
 package com.prodevsmx.rider.beans;
 
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.prodevsmx.rider.utils.DrawableToBitmap;
+import com.prodevsmx.rider.utils.ImageRounder;
 
 /**
  * Created by Pasos on 26/09/2017.
@@ -10,10 +14,19 @@ import android.widget.TextView;
 
 public class EventNearbyItem {
 
-    private ImageView eventImage;
+    private Bitmap eventImage;
     private String nameEvent;
     private String eventPlace;
     private String eventDate;
+
+    public EventNearbyItem(Drawable eventImage, String nameEvent, String eventPlace, String eventDate) {
+        Bitmap bitmapEvent = DrawableToBitmap.drawableToBitmap(eventImage);
+        bitmapEvent = ImageRounder.getRoundedBitmap(bitmapEvent);
+        this.eventImage = bitmapEvent;
+        this.nameEvent = nameEvent;
+        this.eventPlace = eventPlace;
+        this.eventDate = eventDate;
+    }
 
     public String getNameEvent() {
         return nameEvent;
@@ -39,11 +52,11 @@ public class EventNearbyItem {
         this.eventDate = eventDate;
     }
 
-    public ImageView getEventImage() {
+    public Bitmap getEventImage() {
         return eventImage;
     }
 
-    public void setEventImage(ImageView eventImage) {
+    public void setEventImage(Bitmap eventImage) {
         this.eventImage = eventImage;
     }
 }

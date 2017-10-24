@@ -8,7 +8,7 @@
     <EditText
         android:layout_below="@id/include_toolbar"
         android:id="@+id/etSearchBarNextRides"
-        android:layout_marginTop="@dimen/searchBarMargin"
+        android:layout_marginTop="@dimen/marginUIComponent"
         android:layout_marginLeft="@dimen/searchBarMargin"
         android:layout_marginRight="@dimen/searchBarMargin"
         android:layout_width="match_parent"

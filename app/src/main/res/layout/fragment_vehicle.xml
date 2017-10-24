@@ -13,7 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorAccent"
-        android:layout_marginTop="@dimen/marginUIComponent"
         />
 
     <TextView
@@ -42,7 +41,7 @@
         />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewPendingRequests"
+        android:id="@+id/recyclerViewVehicles"
         android:layout_marginTop="@dimen/marginUIComponent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -4,13 +4,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="20dp"
     >
 
     <ImageView
         android:id="@+id/ivEventImage"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_centerVertical="true"
         android:layout_marginEnd="10dp" />
 
@@ -19,11 +18,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/ivEventImage"
-        android:padding="5dp"
+
         android:text="Event Name"
         android:textAppearance="@android:style/TextAppearance"
         android:textColor="@color/colorAccent"
-        android:textSize="22sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tv_EventDetail"
@@ -34,7 +33,7 @@
         android:layout_below="@+id/tvEventTitle"
         android:layout_toEndOf="@id/ivEventImage"
         android:textSize="16sp"
-        android:padding="5dp" />
+    />
 
     <TextView
         android:id="@+id/tv_EventDate"
@@ -45,6 +44,15 @@
         android:layout_below="@+id/tv_EventDetail"
         android:layout_toEndOf="@id/ivEventImage"
         android:textSize="16sp"
-        android:padding="5dp" />
+        />
+
+    <View
+        android:id="@+id/shadow_view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/tv_EventDate"
+        android:layout_marginTop="@dimen/marginUIComponent"
+        android:background="@color/colorSpacerRecyclerElements"
+        />
 
 </RelativeLayout>

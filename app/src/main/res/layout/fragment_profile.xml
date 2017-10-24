@@ -2,35 +2,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.prodevsmx.rider.fragments.FragmentProfile">
 
     <TextView
         android:id="@+id/tvUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:textSize="@dimen/textSizeTitle"
         android:text="@string/provisionalUserName"
+        android:layout_centerHorizontal="true"
         android:textColor="@color/colorAccent"
-        android:layout_margin="@dimen/marginUIComponent"
         />
 
     <ImageView
         android:id="@+id/ivUserProfilePicture"
         android:contentDescription="User image picture"
-        android:layout_margin="@dimen/marginUIComponent"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_below="@id/tvUserName"
+        android:layout_margin="@dimen/searchBarMargin"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_centerHorizontal="true"
+        android:layout_below="@id/tvUserName"
+        android:elevation="8dp"
         />
 
     <Button
         android:id="@+id/btnLogOut"
+        android:background="@drawable/button_primary"
         android:layout_width="match_parent"
+        android:text="Log out"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/marginUIComponent"
-        android:layout_below="@id/ivUserProfilePicture" />
+        android:layout_alignParentBottom="true"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvSocialContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivUserProfilePicture"
+        android:layout_above="@id/btnLogOut"
+        >
+    </android.support.v7.widget.RecyclerView>
 
 
 </RelativeLayout>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="textSizeDescr">18sp</dimen>
+    <dimen name="facebookBtnTextSize">16sp</dimen>
     <dimen name="searchBarSize">30dp</dimen>
     <dimen name="searchBarMargin">20dp</dimen>
     <dimen name="sizeBarMarginStart">40dp</dimen>
     <dimen name="sizeSearchIc">25dp</dimen>
-    <dimen name="marginSearchTop">23dp</dimen>
+    <dimen name="marginSearchTop">13dp</dimen>
     <dimen name="marginSearchIcStart">30dp</dimen>
     <dimen name="marginUIComponent">10dp</dimen>
     <dimen name="elevationSearchBar">2dp</dimen>
@@ -13,4 +14,5 @@
     <dimen name="elevationSearchBarImage">3dp</dimen>
     <dimen name="textSizeTitle">32sp</dimen>
     <dimen name="elevationFAB">12dp</dimen>
+    <dimen name="TextSizeLogin">48sp</dimen>
 </resources>

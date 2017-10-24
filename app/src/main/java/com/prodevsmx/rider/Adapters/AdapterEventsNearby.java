@@ -23,7 +23,7 @@ import java.util.List;
  * Created by Pasos on 26/09/2017.
  */
 
-public class AdapterEventsNearby  extends RecyclerView.Adapter<AdapterEventsNearby.ViewHolder>{
+public class AdapterEventsNearby extends RecyclerView.Adapter<AdapterEventsNearby.ViewHolder>{
 
     private List<EventNearbyItem> items;
     private Context context;
@@ -44,8 +44,9 @@ public class AdapterEventsNearby  extends RecyclerView.Adapter<AdapterEventsNear
         holder.eventName.setText(item.getNameEvent());
         holder.eventPlace.setText(item.getEventPlace());
         holder.eventDate.setText(item.getEventDate());
-        Bitmap eventBitmap = ImageRounder.getRoundedBitmap(DrawableToBitmap.drawableToBitmap(item.getEventImage().getDrawable()));
-        holder.eventImage.setImageBitmap(eventBitmap);
+        //not Now
+        //Bitmap eventBitmap = ImageRounder.getRoundedBitmap(DrawableToBitmap.drawableToBitmap(item.getEventImage().getDrawable()));
+        holder.eventImage.setImageBitmap(item.getEventImage());
         holder.itemView.setTag(item);
     }
 
@@ -67,5 +68,4 @@ public class AdapterEventsNearby  extends RecyclerView.Adapter<AdapterEventsNear
             eventDate = (TextView) itemView.findViewById(R.id.tv_EventDate);
         }
     }
-
 }
