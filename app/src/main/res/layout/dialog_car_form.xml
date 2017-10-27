@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     android:padding="@dimen/marginUIComponent">
 
+
+    <ImageView
+        android:id="@+id/ivSelectCar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_insert_photo_cyan"
+        />
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -15,19 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Car Model"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/etFormCapacidad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Passenger capacity"/>
 
     </android.support.design.widget.TextInputLayout>
 
