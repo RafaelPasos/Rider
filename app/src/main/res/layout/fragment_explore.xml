@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context="com.prodevsmx.rider.fragments.FragmentExplore">
 
     <EditText
@@ -20,7 +22,6 @@
         android:paddingStart="@dimen/sizeBarMarginStart"
         android:paddingEnd="@dimen/marginUIComponent"
         android:inputType="text"
-        android:focusable="false"
         android:elevation="@dimen/elevationSearchBar"
         />
 
