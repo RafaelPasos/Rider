@@ -26,4 +26,5 @@
     <string name="rides_participated">Rides you have participated on</string>
     <string name="pending_ride_requests">Pending ride requests</string>
     <string name="user_car_list">Here\'s a list of your registered cars</string>
+    <string name="title_activity_ijjbibib">Map</string>
 </resources>
