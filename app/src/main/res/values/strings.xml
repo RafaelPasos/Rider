@@ -2,6 +2,7 @@
     <string name="app_name">Rider</string>
     <string name="strSettings">MySettings</string>
     <string name="strOnLogin">OnLogin</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDdfmz1egjUFqky-rv-RvQ76-7XWSDN8mo</string>
 
     <string name="facebook_app_id">900180030155270</string>
     <string name="fb_login_protocol_scheme">fb265133800665169</string>
@@ -27,4 +28,5 @@
     <string name="pending_ride_requests">Pending ride requests</string>
     <string name="user_car_list">Here\'s a list of your registered cars</string>
     <string name="title_activity_ijjbibib">Map</string>
+
 </resources>

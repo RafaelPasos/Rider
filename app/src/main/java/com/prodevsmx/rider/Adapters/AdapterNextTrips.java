@@ -21,9 +21,7 @@ import com.prodevsmx.rider.fragments.FragmentNextRideDetails;
 
 import java.util.List;
 
-/**
- * Created by Damian Garcia on 10/26/2017.
- */
+
 
 public class AdapterNextTrips  extends RecyclerView.Adapter<AdapterNextTrips.ViewHolder> {
 
@@ -60,13 +58,13 @@ public class AdapterNextTrips  extends RecyclerView.Adapter<AdapterNextTrips.Vie
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView eventImage;
-        public TextView eventName;
-        public TextView eventPlace;
-        public TextView eventDate;
+        private ImageView eventImage;
+        private TextView eventName;
+        private TextView eventPlace;
+        private TextView eventDate;
 
 
-        public ViewHolder(View itemView, final Context context) {
+        private ViewHolder(View itemView, final Context context) {
             super(itemView);
             eventImage = (ImageView) itemView.findViewById(R.id.ivEventImage);
             eventName = (TextView) itemView.findViewById(R.id.tvEventTitle);
@@ -83,7 +81,7 @@ public class AdapterNextTrips  extends RecyclerView.Adapter<AdapterNextTrips.Vie
 
                     fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
                     FragmentTransaction transaction = fragmentManager.beginTransaction();
-                    transaction= fragmentManager.beginTransaction();
+                    transaction = fragmentManager.beginTransaction();
                     fragment.setEnterTransition(new Fade(1));
                     fragment.setExitTransition(new Fade(2));
                     transaction.replace(R.id.fragmentMain, fragment);
