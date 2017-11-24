@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.prodevsmx.rider.LoginActivity"
+    tools:context="com.prodevsmx.rider.ActivityLogin"
     >
 
     <TextView
@@ -13,7 +13,7 @@
         android:textSize="@dimen/TextSizeLogin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/searchBarSize"
-        android:text="RIDER"
+        android:text="@string/appNameUpperCase"
         android:textColor="@color/colorPrimaryDark"
         />
 
@@ -50,7 +50,7 @@
     <ImageView
         android:id="@+id/HexTime"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/marginUIComponent"
         android:layout_marginBottom="@dimen/marginUIComponent"
         android:src="@drawable/hex_time"
@@ -63,7 +63,7 @@
         android:layout_alignParentBottom="true"
         android:src="@drawable/hex_money"
         android:layout_marginBottom="@dimen/marginUIComponent"
-        android:layout_toLeftOf="@id/HexTime"
+        android:layout_toStartOf="@id/HexTime"
         android:layout_width="60dp"
         android:layout_height="60dp"
         />

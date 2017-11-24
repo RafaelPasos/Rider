@@ -8,36 +8,11 @@ import android.os.Bundle;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        /*Intent goToActivity = new Intent(SplashScreenActivity.this, ActivityLand.class);
+        Intent goToActivity = new Intent(SplashScreenActivity.this, ActivityLogin.class);
         startActivity(goToActivity);
-        SplashScreenActivity.this.finish();*/
-
-
-        checkSession();
+        finish();
     }
-
-    private void checkSession(){
-
-        SharedPreferences settings = getSharedPreferences(getString(R.string.strSettings), Context.MODE_PRIVATE);
-
-        boolean bLogin = settings.getBoolean(getString(R.string.strOnLogin), false);
-
-        //bLogin  = true;
-
-        if(bLogin){
-            Intent goToActivity = new Intent(SplashScreenActivity.this, ActivityLand.class);
-            startActivity(goToActivity);
-            SplashScreenActivity.this.finish();
-        }else{
-            Intent goToLogin = new Intent(SplashScreenActivity.this, LoginActivity.class);
-            startActivity(goToLogin);
-            SplashScreenActivity.this.finish();
-        }
-    }
-
 }

@@ -1,45 +1,51 @@
 package com.prodevsmx.rider.fragments;
 
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 
-import com.prodevsmx.rider.Adapters.AdapterSocialContact;
-import com.prodevsmx.rider.LoginActivity;
+import com.facebook.login.widget.ProfilePictureView;
+import com.prodevsmx.rider.ActivityLogin;
 import com.prodevsmx.rider.R;
 import com.prodevsmx.rider.beans.SocialContact;
-import com.prodevsmx.rider.utils.DrawableToBitmap;
-import com.prodevsmx.rider.utils.ImageRounder;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 
 public class FragmentProfile extends android.support.v4.app.Fragment{
 
-    ImageView round;
-    Button logOut;
-    CallbackManager callbackManager;
-    SharedPreferences settings;
-    SharedPreferences.Editor editor;
-    RecyclerView recyclerViewSocial;
     View v;
+    ProfilePictureView pic;
+    Button logOut;
+    RecyclerView recyclerViewSocial;
     ArrayList<SocialContact> arraySocial = new ArrayList<>();
+    CallbackManager callbackManager;
+    AccessTokenTracker accessTokenTracker;
+    private JSONObject user;
+    String FIELDS = "fields";
+    private String REQUEST_FIELDS = TextUtils.join(",", new String[]{"name", "id", "picture"});
+    TextView name;
+    private TextView connectedStateLabel;
+
 
     public FragmentProfile() {
     }
@@ -54,55 +60,87 @@ public class FragmentProfile extends android.support.v4.app.Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        FacebookSdk.sdkInitialize(view.getContext());
+        callbackManager = CallbackManager.Factory.create();
         v = view;
-
-        initializeControls();
-
-        Drawable d = getResources().getDrawable(R.drawable.elonmusk, getActivity().getTheme());
-        Bitmap b = DrawableToBitmap.drawableToBitmap(d);
-        b = ImageRounder.getRoundedBitmap(b);
-        round.setImageBitmap(b);
-        initializeViews();
+        pic = (ProfilePictureView) v.findViewById(R.id.ppvProfile);
+        connectedStateLabel = (TextView) v.findViewById(R.id.punUserName);
+        logOut = v.findViewById(R.id.btnLogOut);
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(v.getContext(), ActivityLogin.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 LoginManager.getInstance().logOut();
-                editor.putBoolean(getString(R.string.strOnLogin), false);
-                editor.commit();
-                Intent goTo = new Intent(getActivity(), LoginActivity.class);
-                goTo.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(goTo);
             }
         });
+        accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken,
+                                                       AccessToken currentAccessToken) {
+                if (AccessToken.getCurrentAccessToken() == null){
+                    Intent intent = new Intent(v.getContext(), ActivityLogin.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }else {
+                    fetchUserInfo();
+                    updateUI();
+                }
+            }
+        };
 
-        AdapterSocialContact adapterSocialContact = new AdapterSocialContact(arraySocial, getContext());
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerViewSocial.setLayoutManager(layoutManager);
-        recyclerViewSocial.setAdapter(adapterSocialContact);
     }
 
-    public void initializeControls(){
-        logOut = v.findViewById(R.id.btnLogOut);
-        round = v.findViewById(R.id.ivUserProfilePicture);
-        recyclerViewSocial = v.findViewById(R.id.rvSocialContact);
-        settings = this.getActivity().getSharedPreferences(getString(R.string.strSettings), Context.MODE_PRIVATE);
-        editor = settings.edit();
-        callbackManager = CallbackManager.Factory.create();
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        fetchUserInfo();
+        updateUI();
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        accessTokenTracker.stopTracking();
     }
 
-    public void initializeViews(){
-        Drawable drawable = getResources().getDrawable(R.drawable.fb_logo, getActivity().getTheme());
-        SocialContact item = new SocialContact(drawable, "Facebook", "steve.ruvalcaba.56");
-        arraySocial.add(item);
+    private void fetchUserInfo() {
+        final AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        if (accessToken != null) {
+            GraphRequest request = GraphRequest.newMeRequest(
+                    accessToken, new GraphRequest.GraphJSONObjectCallback() {
+                        @Override
+                        public void onCompleted(JSONObject me, GraphResponse response) {
+                            user = me;
+                            updateUI();
+                        }
+                    });
+            Bundle parameters = new Bundle();
+            parameters.putString(FIELDS, REQUEST_FIELDS);
+            request.setParameters(parameters);
+            GraphRequest.executeBatchAsync(request);
+        } else {
+            user = null;
+        }
+    }
 
-        drawable = getResources().getDrawable(R.drawable.phone_logo, getActivity().getTheme());
-        item = new SocialContact(drawable, "Cellphone", "485688132");
-        arraySocial.add(item);
-
-        drawable = getResources().getDrawable(R.drawable.mail_logo, getActivity().getTheme());
-        item = new SocialContact(drawable, "Email", "stevejobsaoqui@gmail.com");
-        arraySocial.add(item);
+    @SuppressWarnings("deprecation")
+    private void updateUI() {
+        if (AccessToken.getCurrentAccessToken() != null) {
+            if (user != null) {
+                try {
+                    pic.setProfileId(user.getString("id"));
+                } catch (Exception e) {
+                }
+                connectedStateLabel.setText(user.optString("name"));
+            }
+        }
     }
 
 }
