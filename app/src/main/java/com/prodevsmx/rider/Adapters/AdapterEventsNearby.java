@@ -5,18 +5,30 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.prodevsmx.rider.Models.Image.FBImage;
 import com.prodevsmx.rider.R;
 import com.prodevsmx.rider.beans.EventNearbyItem;
 import com.prodevsmx.rider.utils.DrawableToBitmap;
 import com.prodevsmx.rider.utils.ImageRounder;
+import com.prodevsmx.rider.utils.RoundedCornersTransform;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -38,15 +50,22 @@ public class AdapterEventsNearby extends RecyclerView.Adapter<AdapterEventsNearb
         return new ViewHolder(v);
     }
 
-    @Override public void onBindViewHolder(ViewHolder holder, int position) {
-        EventNearbyItem item = items.get(position);
-         //Set data to UI Elements
+    public static Bitmap getFacebookProfilePicture(String userID) throws IOException {
+        URL imageURL = new URL("https://graph.facebook.com/" + userID + "/picture?type=large");
+        Bitmap bitmap = BitmapFactory.decodeStream(imageURL.openConnection().getInputStream());
+        return bitmap;
+    }
+
+    @Override public void onBindViewHolder(final ViewHolder holder, int position) {
+        final EventNearbyItem item = items.get(position);
+        //Set data to UI Elements
+        //not Now
+        //Bitmap eventBitmap = ImageRounder.getRoundedBitmap(DrawableToBitmap.drawableToBitmap(item.getEventImage().getDrawable()));
+        //holder.eventImage.setImageBitmap(item.getEventImage());
         holder.eventName.setText(item.getNameEvent());
         holder.eventPlace.setText(item.getEventPlace());
         holder.eventDate.setText(item.getEventDate());
-        //not Now
-        //Bitmap eventBitmap = ImageRounder.getRoundedBitmap(DrawableToBitmap.drawableToBitmap(item.getEventImage().getDrawable()));
-        holder.eventImage.setImageBitmap(item.getEventImage());
+        Picasso.with(context).load("https://graph.facebook.com/" + item.getId() + "/picture").into(holder.eventImage);
         holder.itemView.setTag(item);
     }
 

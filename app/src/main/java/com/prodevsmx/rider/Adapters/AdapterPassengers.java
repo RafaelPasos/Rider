@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.prodevsmx.rider.R;
 import com.prodevsmx.rider.beans.PendingRequestItem;
 import com.prodevsmx.rider.beans.SocialContact;
+import com.prodevsmx.rider.utils.RoundedCornersTransform;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,8 @@ public class AdapterPassengers extends RecyclerView.Adapter<AdapterPassengers.Vi
     @Override
     public void onBindViewHolder(AdapterPassengers.ViewHolder holder, int position) {
         PendingRequestItem item = contacts.get(position);
-        holder.userImage.setImageBitmap(item.getUserImage());
+        //holder.userImage.setImageBitmap(item.getUserImage());
+        Picasso.with(c).load(item.getUserImage()).transform(new RoundedCornersTransform()).into(holder.userImage);
         holder.userLocation.setText(item.getPickup());
         holder.userMode.setText(item.getMode());
         holder.userName.setText(item.getUserName());

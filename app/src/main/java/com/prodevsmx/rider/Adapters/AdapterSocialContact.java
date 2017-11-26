@@ -13,6 +13,8 @@ import com.prodevsmx.rider.R;
 import com.prodevsmx.rider.beans.SocialContact;
 import com.prodevsmx.rider.utils.DrawableToBitmap;
 import com.prodevsmx.rider.utils.ImageRounder;
+import com.prodevsmx.rider.utils.RoundedCornersTransform;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -46,7 +48,8 @@ public class AdapterSocialContact extends RecyclerView.Adapter<AdapterSocialCont
 
         //not Now
         //Bitmap eventBitmap = ImageRounder.getRoundedBitmap(DrawableToBitmap.drawableToBitmap(item.getSocialImage().getDrawable()));
-        holder.socialImage.setImageBitmap(item.getSocialImage());
+        //holder.socialImage.setImageBitmap(item.getSocialImage());
+        Picasso.with(context).load(item.getSocialImage()).transform(new RoundedCornersTransform()).into(holder.socialImage);
         holder.itemView.setTag(item);
     }
 

@@ -12,24 +12,22 @@ import com.prodevsmx.rider.utils.ImageRounder;
  */
 
 public class SocialContact {
-    private Bitmap socialImage;
+    private String socialImage;
     private String socialName;
     private String socialInfo;
 
 
-    public SocialContact(Drawable socialImage, String socialName, String socialInfo) {
-        Bitmap bitmapSocial = DrawableToBitmap.drawableToBitmap(socialImage);
-        bitmapSocial = ImageRounder.getRoundedBitmap(bitmapSocial);
-        this.socialImage = bitmapSocial;
+    public SocialContact(String socialImage, String socialName, String socialInfo) {
+        this.socialImage = socialImage;
         this.socialName = socialName;
         this.socialInfo = socialInfo;
     }
 
-    public Bitmap getSocialImage() {
+    public String getSocialImage() {
         return socialImage;
     }
 
-    public void setSocialImage(Bitmap socialImage) {
+    public void setSocialImage(String socialImage) {
         this.socialImage = socialImage;
     }
 
