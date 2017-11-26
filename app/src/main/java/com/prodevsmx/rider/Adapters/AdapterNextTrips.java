@@ -2,22 +2,19 @@ package com.prodevsmx.rider.Adapters;
 
 import android.content.Context;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.transition.Fade;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.prodevsmx.rider.ActivityRideDetail;
 import com.prodevsmx.rider.R;
 import com.prodevsmx.rider.beans.EventNearbyItem;
-import com.prodevsmx.rider.fragments.FragmentNextRideDetails;
+import com.prodevsmx.rider.utils.RoundedCornersTransform;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -48,7 +45,7 @@ public class AdapterNextTrips  extends RecyclerView.Adapter<AdapterNextTrips.Vie
         holder.eventDate.setText(item.getEventDate());
         //not Now
         //Bitmap eventBitmap = ImageRounder.getRoundedBitmap(DrawableToBitmap.drawableToBitmap(item.getEventImage().getDrawable()));
-        holder.eventImage.setImageBitmap(item.getEventImage());
+        Picasso.with(context).load(item.getEventImage()).transform(new RoundedCornersTransform()).into(holder.eventImage);
         holder.itemView.setTag(item);
     }
 
@@ -64,7 +61,7 @@ public class AdapterNextTrips  extends RecyclerView.Adapter<AdapterNextTrips.Vie
         private TextView eventDate;
 
 
-        private ViewHolder(View itemView, final Context context) {
+        private ViewHolder(final View itemView, final Context context) {
             super(itemView);
             eventImage = (ImageView) itemView.findViewById(R.id.ivEventImage);
             eventName = (TextView) itemView.findViewById(R.id.tvEventTitle);
@@ -74,35 +71,11 @@ public class AdapterNextTrips  extends RecyclerView.Adapter<AdapterNextTrips.Vie
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, "click",Toast.LENGTH_SHORT).show();
-                    Fragment fragment = new FragmentNextRideDetails();
-
-                    FragmentManager fragmentManager;
-
-                    fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
-                    FragmentTransaction transaction = fragmentManager.beginTransaction();
-                    transaction = fragmentManager.beginTransaction();
-                    fragment.setEnterTransition(new Fade(1));
-                    fragment.setExitTransition(new Fade(2));
-                    transaction.replace(R.id.fragmentMain, fragment);
-                    transaction.commit();
+                    Intent i = new Intent(itemView.getContext(), ActivityRideDetail.class);
+                    itemView.getContext().startActivity(i);
                 }
             });
         }
     }
 
-    /*
-
-     changeBottomNavColor(true);
-                        //TODO: GO TO VEHICLES PAGE
-                        Log.d("Fragment", "Vehicles");
-                        transaction = fragmentManager.beginTransaction();
-                        fragment = new FragmentVehicle();
-                        //fragment.setEnterTransition(new Slide(Gravity.RIGHT));
-                        //fragment.setExitTransition(new Slide(Gravity.LEFT));
-                        fragment.setEnterTransition(new Fade(1));
-                        fragment.setExitTransition(new Fade(2));
-                        transaction.replace(R.id.fragmentMain, fragment);
-                        transaction.commit();
-    * */
 }

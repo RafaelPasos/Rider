@@ -12,27 +12,24 @@ import com.prodevsmx.rider.utils.ImageRounder;
 
 public class PendingRequestItem {
 
-    Bitmap userImage;
+    String userImage;
     String userName;
     String mode;
     String pickup;
 
 
-    public PendingRequestItem(Drawable userImage, String userName, String pickup, String mode) {
-        Bitmap bitmapUser = DrawableToBitmap.drawableToBitmap(userImage);
-        bitmapUser = ImageRounder.getRoundedBitmap(bitmapUser);
-
-        this.userImage = bitmapUser;
+    public PendingRequestItem(String userImage, String userName, String pickup, String mode) {
+        this.userImage = userImage;
         this.userName = userName;
         this.mode = mode;
         this.pickup = pickup;
     }
 
-    public Bitmap getUserImage() {
+    public String getUserImage() {
         return userImage;
     }
 
-    public void setUserImage(Bitmap userImage) {
+    public void setUserImage(String userImage) {
         this.userImage = userImage;
     }
 

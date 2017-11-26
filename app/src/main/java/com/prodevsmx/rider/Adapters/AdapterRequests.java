@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.prodevsmx.rider.R;
 import com.prodevsmx.rider.beans.CarItem;
 import com.prodevsmx.rider.beans.PendingRequestItem;
+import com.prodevsmx.rider.utils.RoundedCornersTransform;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -41,7 +43,8 @@ public class AdapterRequests extends RecyclerView.Adapter<AdapterRequests.ViewHo
         holder.userMode.setText(item.getMode());
         //not Now
         //Bitmap eventBitmap = ImageRounder.getRoundedBitmap(DrawableToBitmap.drawableToBitmap(item.getEventImage().getDrawable()));
-        holder.userImage.setImageBitmap(item.getUserImage());
+        //holder.userImage.setImageBitmap(item.getUserImage());
+        Picasso.with(context).load(item.getUserImage()).transform(new RoundedCornersTransform()).into(holder.userImage);
         holder.itemView.setTag(item);
     }
 

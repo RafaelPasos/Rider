@@ -15,6 +15,7 @@ import com.prodevsmx.rider.R;
 import com.prodevsmx.rider.beans.EventNearbyItem;
 import com.prodevsmx.rider.utils.DrawableToBitmap;
 import com.prodevsmx.rider.utils.ImageRounder;
+import com.prodevsmx.rider.utils.RoundedCornersTransform;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -46,7 +47,8 @@ public class AdapterEventsNearby extends RecyclerView.Adapter<AdapterEventsNearb
         holder.eventDate.setText(item.getEventDate());
         //not Now
         //Bitmap eventBitmap = ImageRounder.getRoundedBitmap(DrawableToBitmap.drawableToBitmap(item.getEventImage().getDrawable()));
-        holder.eventImage.setImageBitmap(item.getEventImage());
+        //holder.eventImage.setImageBitmap(item.getEventImage());
+        Picasso.with(context).load(item.getEventImage()).transform(new RoundedCornersTransform()).into(holder.eventImage);
         holder.itemView.setTag(item);
     }
 

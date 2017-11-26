@@ -14,15 +14,13 @@ import com.prodevsmx.rider.utils.ImageRounder;
 
 public class EventNearbyItem {
 
-    private Bitmap eventImage;
+    private String eventImage;
     private String nameEvent;
     private String eventPlace;
     private String eventDate;
 
-    public EventNearbyItem(Drawable eventImage, String nameEvent, String eventPlace, String eventDate) {
-        Bitmap bitmapEvent = DrawableToBitmap.drawableToBitmap(eventImage);
-        bitmapEvent = ImageRounder.getRoundedBitmap(bitmapEvent);
-        this.eventImage = bitmapEvent;
+    public EventNearbyItem(String eventImage, String nameEvent, String eventPlace, String eventDate) {
+        this.eventImage = eventImage;
         this.nameEvent = nameEvent;
         this.eventPlace = eventPlace;
         this.eventDate = eventDate;
@@ -52,11 +50,11 @@ public class EventNearbyItem {
         this.eventDate = eventDate;
     }
 
-    public Bitmap getEventImage() {
+    public String getEventImage() {
         return eventImage;
     }
 
-    public void setEventImage(Bitmap eventImage) {
+    public void setEventImage(String eventImage) {
         this.eventImage = eventImage;
     }
 }

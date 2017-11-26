@@ -49,16 +49,14 @@ public class FragmentRequests extends android.support.v4.app.Fragment{
     }
 
     public void initializeViews(){
-        Drawable drawable = getResources().getDrawable(R.drawable.susana, getActivity().getTheme());
-        PendingRequestItem item = new PendingRequestItem(drawable, "Susana Mérces", "Trapani", "Pasajero");
+
+        PendingRequestItem item = new PendingRequestItem("https://media.pitchfork.com/photos/59299367c0084474cd0bead4/1:1/w_300/90179474.jpg", "Susana Mérces", "Trapani", "Pasajero");
         pendingRequestItems.add(item);
 
-        drawable = getResources().getDrawable(R.drawable.ana, getActivity().getTheme());
-        item = new PendingRequestItem(drawable, "Anastasia Klimov", "Av. Chaikovski", "Pasajero");
+        item = new PendingRequestItem("https://media.pitchfork.com/photos/59299367c0084474cd0bead4/1:1/w_300/90179474.jpg", "Anastasia Klimov", "Av. Chaikovski", "Pasajero");
         pendingRequestItems.add(item);
 
-        drawable = getResources().getDrawable(R.drawable.roger, getActivity().getTheme());
-        item = new PendingRequestItem(drawable, "Rogelio Rámirez", "Av. México", "Pasajero");
+        item = new PendingRequestItem("https://media.pitchfork.com/photos/59299367c0084474cd0bead4/1:1/w_300/90179474.jpg", "Rogelio Rámirez", "Av. México", "Pasajero");
         pendingRequestItems.add(item);
     }
 
