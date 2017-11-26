@@ -45,23 +45,22 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ride_detail);
 
-        /*
-        SupportMapFragment mapFragment = (SupportMapFragment) findViewById(R.id.map);
+
+        SupportMapFragment mapFragment =  (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        passengers = (RecyclerView) v.findViewById(R.id.recycler_view_passengers);
+        passengers = (RecyclerView) findViewById(R.id.recycler_view_passengers);
         Drawable drawable = getResources().getDrawable(R.drawable.susana, getTheme());
         PendingRequestItem item = new PendingRequestItem(drawable, "Susana Mérces", "Trapani", "Pasajero");
         for (int i=0; i<5; i++){
             pass.add(item);
         }
         AdapterPassengers adapter = new AdapterPassengers(pass, this);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this), LinearLayoutManager.HORIZONTAL, false);
+        //LinearLayoutManager layoutManager = new LinearLayoutManager(this), LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         passengers.setLayoutManager(layoutManager);
         passengers.setAdapter(adapter);
-        */
+
 
     }
-
-
 
 }
