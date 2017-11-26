@@ -14,16 +14,27 @@ import com.prodevsmx.rider.utils.ImageRounder;
 
 public class EventNearbyItem {
 
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     private String eventImage;
     private String nameEvent;
     private String eventPlace;
     private String eventDate;
 
-    public EventNearbyItem(String eventImage, String nameEvent, String eventPlace, String eventDate) {
-        this.eventImage = eventImage;
+    public EventNearbyItem(String id, String nameEvent, String eventPlace, String eventDate) {
+        this.id = id;
         this.nameEvent = nameEvent;
         this.eventPlace = eventPlace;
         this.eventDate = eventDate;
+        eventImage = "http://icons.iconarchive.com/icons/dakirby309/windows-8-metro/256/Folders-OS-Default-Metro-icon.png";
     }
 
     public String getNameEvent() {
