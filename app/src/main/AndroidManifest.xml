@@ -31,6 +31,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity android:name=".ActivityLand" android:theme="@style/AppThemeCustom" android:screenOrientation="portrait"></activity>
         <activity
             android:name=".SplashScreenActivity"
             android:screenOrientation="portrait"
@@ -41,10 +43,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ActivityLand"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeCustom"></activity>
+
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

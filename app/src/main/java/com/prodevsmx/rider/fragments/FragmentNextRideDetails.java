@@ -1,7 +1,11 @@
 package com.prodevsmx.rider.fragments;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +17,20 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.prodevsmx.rider.Adapters.AdapterPassengers;
 import com.prodevsmx.rider.R;
+import com.prodevsmx.rider.beans.PendingRequestItem;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class FragmentNextRideDetails extends android.support.v4.app.Fragment implements OnMapReadyCallback{
-
+    List<PendingRequestItem> pass = new ArrayList<PendingRequestItem>();
     SupportMapFragment supportMapFragment;
     private GoogleMap mMap;
     View v;
-
+    RecyclerView passengers;
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -64,6 +72,22 @@ public class FragmentNextRideDetails extends android.support.v4.app.Fragment imp
 
         //
         mapFragment.getMapAsync(this);
+
+        passengers = (RecyclerView) v.findViewById(R.id.recycler_view_passengers);
+
+
+
+
+        Drawable drawable = getResources().getDrawable(R.drawable.susana, getActivity().getTheme());
+        PendingRequestItem item = new PendingRequestItem(drawable, "Susana Mérces", "Trapani", "Pasajero");
+        for (int i=0; i<5; i++){
+            pass.add(item);
+        }
+
+        AdapterPassengers adapter = new AdapterPassengers(pass, getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        passengers.setLayoutManager(layoutManager);
+        passengers.setAdapter(adapter);
     }
 
 }
