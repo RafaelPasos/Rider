@@ -1,6 +1,7 @@
 package com.prodevsmx.rider;
 
 import android.app.Fragment;
+import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
 import android.graphics.Color;
@@ -8,6 +9,8 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.transition.Fade;
 import android.transition.Slide;
 import android.support.transition.TransitionInflater;
@@ -34,6 +37,8 @@ import butterknife.ButterKnife;
 
 import static android.R.color.holo_blue_light;
 
+import android.Manifest;
+
 public class ActivityLand extends AppCompatActivity {
 
 
@@ -44,12 +49,39 @@ public class ActivityLand extends AppCompatActivity {
     int[][] states;
     int[] colors;
     ColorStateList myList;
+    static final int MY_PERMISSIONS_REQUEST_LOCATION = 6969;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_land);
-        initializeUIElements();
+        checkPermission();
+    }
+
+    public void checkPermission(){
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        if(permissionCheck == PackageManager.PERMISSION_DENIED){
+            ActivityCompat.requestPermissions(this,
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_LOCATION);
+        }else{
+            initializeUIElements();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch(requestCode){
+            case MY_PERMISSIONS_REQUEST_LOCATION:{
+                if(grantResults.length > 0){
+                    Log.d("PERMISO:", ":)GRAX");
+                }
+                else{
+                    Log.d("PERMISO:", ":(MAL");
+                }
+                checkPermission();
+                return;
+            }
+        }
     }
 
     public void initializeUIElements(){
@@ -63,7 +95,6 @@ public class ActivityLand extends AppCompatActivity {
         BottomNavigationViewHelper.disableShiftMode(navigationBar);
         navigationBar.setSelectedItemId(R.id.navBExplore);
         fragmentManager = getSupportFragmentManager();
-
     }
 
     public void addBottomNavigationListener(){

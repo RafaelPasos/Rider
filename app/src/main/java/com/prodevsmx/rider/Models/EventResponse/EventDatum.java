@@ -3,6 +3,8 @@ package com.prodevsmx.rider.Models.EventResponse;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class EventDatum {
 
     @SerializedName("description")
@@ -23,6 +25,10 @@ public class EventDatum {
     @SerializedName("id")
     @Expose
     private String id;
+
+    @SerializedName("event_times")
+    @Expose
+    private List<EventTime> eventTimes = null;
 
     public String getDescription() {
         return description;
@@ -72,4 +78,11 @@ public class EventDatum {
         this.id = id;
     }
 
+    public List<EventTime> getevent_times() {
+        return eventTimes;
+    }
+
+    public void setevent_times(List<EventTime> eventTimes) {
+        this.eventTimes = eventTimes;
+    }
 }
