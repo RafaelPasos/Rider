@@ -3,6 +3,7 @@ package com.prodevsmx.rider.Adapters;
 import android.content.Context;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,7 @@ import java.util.List;
 
 public class AdapterNextTrips  extends RecyclerView.Adapter<AdapterNextTrips.ViewHolder> {
 
-    private List<EventNearbyItem> items;
+    private static List<EventNearbyItem> items;
     private Context context;
 
     @Override
@@ -40,6 +41,7 @@ public class AdapterNextTrips  extends RecyclerView.Adapter<AdapterNextTrips.Vie
     public void onBindViewHolder(AdapterNextTrips.ViewHolder holder, int position) {
         EventNearbyItem item = items.get(position);
         //Set data to UI Elements
+
         holder.eventName.setText(item.getNameEvent());
         holder.eventPlace.setText(item.getEventPlace());
         holder.eventDate.setText(item.getEventDate());
@@ -63,15 +65,25 @@ public class AdapterNextTrips  extends RecyclerView.Adapter<AdapterNextTrips.Vie
 
         private ViewHolder(final View itemView, final Context context) {
             super(itemView);
-            eventImage = (ImageView) itemView.findViewById(R.id.ivEventImage);
-            eventName = (TextView) itemView.findViewById(R.id.tvEventTitle);
-            eventPlace = (TextView) itemView.findViewById(R.id.tv_EventDetail);
-            eventDate = (TextView) itemView.findViewById(R.id.tv_EventDate);
+            eventImage = (ImageView) itemView.findViewById(R.id.ivEventImageDetail);
+            eventName = (TextView) itemView.findViewById(R.id.tvEventTitleDetail);
+            eventPlace = (TextView) itemView.findViewById(R.id.tv_EventDetailDetail);
+            eventDate = (TextView) itemView.findViewById(R.id.tv_EventDateDetail);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    String eventImage = items.get(getAdapterPosition()).getEventImage();
+                    String eventName = items.get(getAdapterPosition()).getNameEvent();
+                    String eventPlace = items.get(getAdapterPosition()).getEventPlace();
+                    String eventDate = items.get(getAdapterPosition()).getEventDate();
+                    Bundle data = new Bundle();
+                    data.putString("image", eventDate);
+                    data.putString("name", eventName);
+                    data.putString("place", eventPlace);
+                    data.putString("date", eventDate);
                     Intent i = new Intent(itemView.getContext(), ActivityRideDetail.class);
+                    i.putExtras(data);
                     itemView.getContext().startActivity(i);
                 }
             });

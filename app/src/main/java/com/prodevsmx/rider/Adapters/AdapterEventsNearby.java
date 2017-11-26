@@ -3,32 +3,19 @@ package com.prodevsmx.rider.Adapters;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.facebook.AccessToken;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.prodevsmx.rider.Models.Image.FBImage;
 import com.prodevsmx.rider.R;
 import com.prodevsmx.rider.beans.EventNearbyItem;
-import com.prodevsmx.rider.utils.DrawableToBitmap;
-import com.prodevsmx.rider.utils.ImageRounder;
-import com.prodevsmx.rider.utils.RoundedCornersTransform;
 import com.squareup.picasso.Picasso;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -81,10 +68,10 @@ public class AdapterEventsNearby extends RecyclerView.Adapter<AdapterEventsNearb
 
         public ViewHolder(View itemView) {
             super(itemView);
-            eventImage = (ImageView) itemView.findViewById(R.id.ivEventImage);
-            eventName = (TextView) itemView.findViewById(R.id.tvEventTitle);
-            eventPlace = (TextView) itemView.findViewById(R.id.tv_EventDetail);
-            eventDate = (TextView) itemView.findViewById(R.id.tv_EventDate);
+            eventImage = (ImageView) itemView.findViewById(R.id.ivEventImageDetail);
+            eventName = (TextView) itemView.findViewById(R.id.tvEventTitleDetail);
+            eventPlace = (TextView) itemView.findViewById(R.id.tv_EventDetailDetail);
+            eventDate = (TextView) itemView.findViewById(R.id.tv_EventDateDetail);
         }
     }
 }
