@@ -3,6 +3,7 @@ package com.prodevsmx.rider.beans;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
+import com.prodevsmx.rider.beans.BackEndModels.PickUpRequest;
 import com.prodevsmx.rider.utils.DrawableToBitmap;
 import com.prodevsmx.rider.utils.ImageRounder;
 
@@ -55,5 +56,15 @@ public class PendingRequestItem {
 
     public void setPickup(String pickup) {
         this.pickup = pickup;
+    }
+
+    public static PendingRequestItem backEndModelMapper(PickUpRequest backEndModel){
+        String userImage = "https://media.pitchfork.com/photos/59299367c0084474cd0bead4/1:1/w_300/90179474.jpg";
+        String userName = backEndModel.getPasajero().getName();
+        String mode = "pasajero";
+        String pickup = backEndModel.getAddress();
+
+        PendingRequestItem  generated =  new PendingRequestItem(userImage, userName, mode, pickup);
+        return generated;
     }
 }
