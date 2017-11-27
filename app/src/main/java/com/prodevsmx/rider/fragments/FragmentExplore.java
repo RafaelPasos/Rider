@@ -11,10 +11,17 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
@@ -40,17 +47,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public class FragmentExplore extends android.support.v4.app.Fragment {
-
     View v;
     String searchStr = null;
     ArrayList<EventNearbyItem> eventNearbyItems = new ArrayList<>();
     RecyclerView recyclerViewEvents;
     CallbackManager callbackManager;
     private FusedLocationProviderClient mFusedLocationClient;
-
+    TextView text ;
+    EditText filter;
+    ImageView iv;
     public void getEventsFromFB() {
         if (searchStr== null){
             getLocation();
+
         }else{
             eventNearbyItems.clear();
             GraphRequest request = GraphRequest.newGraphPathRequest(
@@ -93,18 +102,33 @@ public class FragmentExplore extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         callbackManager = CallbackManager.Factory.create();
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getContext());
-        return inflater.inflate(R.layout.fragment_explore, container, false);
 
+        return inflater.inflate(R.layout.fragment_explore, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         v = view;
+        filter = (EditText) v.findViewById(R.id.etSearchBar);
+        filter.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if(i == EditorInfo.IME_ACTION_DONE){
+                    searchStr = filter.getText().toString();
+                    text.setText("Events related with " +searchStr);
+                    getEventsFromFB();
+                }
+                return false;
+            }
+        });
+        text = (TextView) v.findViewById(R.id.tvEventsNearby);
         recyclerViewEvents = v.findViewById(R.id.recyclerViewEventsNearby);
+        iv = v.findViewById(R.id.ivSearchIC);
         getEventsFromFB();
         populateRecyclerView();
     }
+
 
     public void getLocation(){
         try {
@@ -116,6 +140,7 @@ public class FragmentExplore extends android.support.v4.app.Fragment {
                         List<Address> addresses = gcd.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                         if (addresses.size() > 0){
                             searchStr = addresses.get(0).getLocality();
+                            text.setText("Events near " + searchStr);
                             Log.d("direccion:", searchStr);
                             getEventsFromFB();
                         }else {
@@ -132,7 +157,7 @@ public class FragmentExplore extends android.support.v4.app.Fragment {
             });
         }
         catch(SecurityException e){
-            searchStr = "Error";
+            searchStr = "";
             Log.d("EERASYNC" ,"TOROMAX");
         }
     }

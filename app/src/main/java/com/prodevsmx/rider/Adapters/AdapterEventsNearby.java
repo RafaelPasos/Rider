@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.prodevsmx.rider.R;
 import com.prodevsmx.rider.beans.EventNearbyItem;
+import com.prodevsmx.rider.utils.RoundedCornersTransform;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -52,7 +53,7 @@ public class AdapterEventsNearby extends RecyclerView.Adapter<AdapterEventsNearb
         holder.eventName.setText(item.getNameEvent());
         holder.eventPlace.setText(item.getEventPlace());
         holder.eventDate.setText(item.getEventDate());
-        Picasso.with(context).load("https://graph.facebook.com/" + item.getId() + "/picture").into(holder.eventImage);
+        Picasso.with(context).load("https://graph.facebook.com/" + item.getId() + "/picture").transform(new RoundedCornersTransform()).into(holder.eventImage);
         holder.itemView.setTag(item);
     }
 

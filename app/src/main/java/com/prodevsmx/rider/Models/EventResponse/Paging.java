@@ -4,9 +4,11 @@ package com.prodevsmx.rider.Models.EventResponse;
  * Created by Carlos on 25/11/2017.
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Paging {
 
     @SerializedName("cursors")

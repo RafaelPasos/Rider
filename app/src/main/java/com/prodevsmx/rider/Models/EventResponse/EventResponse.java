@@ -1,9 +1,12 @@
 package com.prodevsmx.rider.Models.EventResponse;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class EventResponse {
 
     @SerializedName("data")
