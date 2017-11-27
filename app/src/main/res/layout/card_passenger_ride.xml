@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <ImageView
@@ -40,11 +40,20 @@
             android:layout_height="wrap_content"
             android:text="Pick User"
             android:textColor="@android:color/black"
-            android:layout_below="@+id/tv_requestPickPointRide"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="10dp"
             android:textSize="16sp"
             android:background="@drawable/button_secondary"
             />
 
-
     </RelativeLayout>
+    <View
+        android:id="@+id/shadow_view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorSpacerRecyclerElements"
+        android:layout_margin="@dimen/marginUIComponent"
+        />
+
 </RelativeLayout>

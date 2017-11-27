@@ -17,6 +17,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.prodevsmx.rider.Adapters.AdapterOnRide;
 import com.prodevsmx.rider.Adapters.AdapterPassengers;
 import com.prodevsmx.rider.beans.PendingRequestItem;
 import com.squareup.picasso.Picasso;
@@ -36,6 +37,8 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
     TextView eventPlace;
     TextView eventDate;
     Button button;
+    boolean onTravel = false;
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -75,9 +78,9 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
 
         SupportMapFragment mapFragment =  (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        passengers = (RecyclerView) findViewById(R.id.recycler_view_passengers);
+        passengers = (RecyclerView) findViewById(R.id.recycler_view_passengersRide);
         PendingRequestItem item = new PendingRequestItem("https://media.pitchfork.com/photos/59299367c0084474cd0bead4/1:1/w_300/90179474.jpg", "Susana Mérces", "Trapani", "Pasajero");
-        for (int i=0; i<5; i++){
+        for (int i=0; i<3; i++){
             pass.add(item);
         }
         AdapterPassengers adapter = new AdapterPassengers(pass, this);
@@ -89,10 +92,14 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ActivityRideDetail.this, ActivityRide.class);
-                startActivity(i);
+                AdapterOnRide adapter = new AdapterOnRide(pass, ActivityRideDetail.this);
+                passengers.setAdapter(adapter);
+                button.setText("End ride");
+                onTravel = true;
+
             }
         });
+
 
 
     }

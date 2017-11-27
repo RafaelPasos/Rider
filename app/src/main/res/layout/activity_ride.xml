@@ -9,9 +9,9 @@
     <include android:id="@+id/rider_toolbarRide" layout="@layout/rider_toolbar"></include>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_passengers"
+        android:id="@+id/recycler_view_passengersRide"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/rider_toolbarRide"
         android:orientation="horizontal"
         >
@@ -35,7 +35,7 @@
         android:name="com.google.android.gms.maps.MapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/recycler_view_passengers"
+        android:layout_below="@+id/recycler_view_passengersRide"
         android:layout_above="@+id/btnRide"
         />
 

@@ -42,7 +42,6 @@ public class AdapterOnRide extends RecyclerView.Adapter<AdapterOnRide.ViewHolder
         //holder.userImage.setImageBitmap(item.getUserImage());
         Picasso.with(c).load(item.getUserImage()).transform(new RoundedCornersTransform()).into(holder.userImage);
         holder.userLocation.setText(item.getPickup());
-        holder.userMode.setText(item.getMode());
         holder.userName.setText(item.getUserName());
     }
 
@@ -67,7 +66,7 @@ public class AdapterOnRide extends RecyclerView.Adapter<AdapterOnRide.ViewHolder
             userMode.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    userMode.setText("PickedUp");
+                    userMode.setText("Picked Up");
                     userMode.setEnabled(false);
                 }
             });
