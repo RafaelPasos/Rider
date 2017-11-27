@@ -36,6 +36,7 @@ repositories {
 
 
 
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -57,7 +58,8 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:26.0.1'
     compile 'com.android.support:customtabs:26.0.1'
     compile 'com.android.support:design:26.0.1'
-    compile 'com.google.android.gms:play-services-maps:10.2.6'
+    compile 'com.google.android.gms:play-services-maps:11.0.1'
+    compile "com.google.android.gms:play-services-location:11.0.1"
 
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,27 +17,27 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 /**
- * Created by Carlos on 16/11/2017.
+ * Created by rpasos on 26/11/17.
  */
 
-public class AdapterPassengers extends RecyclerView.Adapter<AdapterPassengers.ViewHolder>{
+public class AdapterOnRide extends RecyclerView.Adapter<AdapterOnRide.ViewHolder>{
 
     List<PendingRequestItem> contacts;
     Context c;
 
-    public AdapterPassengers(List<PendingRequestItem> items, Context context) {
+    public AdapterOnRide(List<PendingRequestItem> items, Context context) {
         contacts = items;
         c = context;
     }
 
     @Override
-    public AdapterPassengers.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_request, parent, false);
-        return new AdapterPassengers.ViewHolder(v);
+    public AdapterOnRide.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_passenger_ride, parent, false);
+        return new AdapterOnRide.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(AdapterPassengers.ViewHolder holder, int position) {
+    public void onBindViewHolder(AdapterOnRide.ViewHolder holder, int position) {
         PendingRequestItem item = contacts.get(position);
         //holder.userImage.setImageBitmap(item.getUserImage());
         Picasso.with(c).load(item.getUserImage()).transform(new RoundedCornersTransform()).into(holder.userImage);
@@ -55,14 +56,22 @@ public class AdapterPassengers extends RecyclerView.Adapter<AdapterPassengers.Vi
         ImageView userImage;
         TextView userName;
         TextView userLocation;
-        TextView userMode;
+        Button userMode;
 
         public ViewHolder(View itemView) {
             super(itemView);
             userImage = (ImageView) itemView.findViewById(R.id.ivUserRequestImageRide);
             userName = (TextView) itemView.findViewById(R.id.tvUserRequestNameRide);
             userLocation = (TextView) itemView.findViewById(R.id.tv_requestPickPointRide);
-            userMode = (TextView) itemView.findViewById(R.id.tv_requestUserMode);
+            userMode = (Button) itemView.findViewById(R.id.btnPickUpRide);
+            userMode.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    userMode.setText("PickedUp");
+                    userMode.setEnabled(false);
+                }
+            });
+
         }
     }
 }

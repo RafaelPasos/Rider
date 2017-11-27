@@ -88,9 +88,14 @@
         <activity
             android:name=".ActivityRideDetail"
             android:screenOrientation="portrait"
+            android:theme="@style/AppThemeCustom"></activity>
+
+        <activity
+            android:name=".ActivityRide"
+            android:screenOrientation="portrait"
             android:theme="@style/AppThemeCustom"
-            >
-        </activity>
+            ></activity>
+
     </application>
 
 </manifest>

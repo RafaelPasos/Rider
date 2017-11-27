@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.prodevsmx.rider.R;
-import com.prodevsmx.rider.beans.CarItem;
 import com.prodevsmx.rider.beans.PendingRequestItem;
 import com.prodevsmx.rider.utils.RoundedCornersTransform;
 import com.squareup.picasso.Picasso;
@@ -60,9 +59,9 @@ public class AdapterRequests extends RecyclerView.Adapter<AdapterRequests.ViewHo
 
         public ViewHolder(View itemView) {
             super(itemView);
-            userImage = (ImageView) itemView.findViewById(R.id.ivUserRequestImage);
-            userName = (TextView) itemView.findViewById(R.id.tvUserRequestName);
-            userLocation = (TextView) itemView.findViewById(R.id.tv_requestPickPoint);
+            userImage = (ImageView) itemView.findViewById(R.id.ivUserRequestImageRide);
+            userName = (TextView) itemView.findViewById(R.id.tvUserRequestNameRide);
+            userLocation = (TextView) itemView.findViewById(R.id.tv_requestPickPointRide);
             userMode = (TextView) itemView.findViewById(R.id.tv_requestUserMode);
         }
     }

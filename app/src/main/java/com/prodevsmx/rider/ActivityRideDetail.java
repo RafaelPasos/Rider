@@ -1,10 +1,12 @@
 package com.prodevsmx.rider;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,6 +35,7 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
     TextView eventName;
     TextView eventPlace;
     TextView eventDate;
+    Button button;
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -58,7 +61,7 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         eventNameStr = extras.getString("name");
         eventPlaceStr = extras.getString("place");
         eventDateStr = extras.getString("date");
-
+        button = findViewById(R.id.btnStartRide);
         eventImage = findViewById(R.id.ivEventImageDetail);
         eventName = findViewById(R.id.tvEventTitleDetail);
         eventPlace = findViewById(R.id.tv_EventDetailDetail);
@@ -82,6 +85,15 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         passengers.setLayoutManager(layoutManager);
         passengers.setAdapter(adapter);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ActivityRideDetail.this, ActivityRide.class);
+                startActivity(i);
+            }
+        });
+
 
     }
 
