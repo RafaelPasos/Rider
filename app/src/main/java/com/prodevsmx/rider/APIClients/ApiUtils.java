@@ -6,6 +6,7 @@ package com.prodevsmx.rider.APIClients;
 
 public class ApiUtils {
     public static final String RIDER_BASE_URL = "http://riderbackend.azurewebsites.net/";
+
     public static RiderEndPoints getRiderService(){
         return RetrofitClient.getClient(RIDER_BASE_URL).create(RiderEndPoints.class);
     }

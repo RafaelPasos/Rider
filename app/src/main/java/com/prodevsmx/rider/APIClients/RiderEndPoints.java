@@ -8,6 +8,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by Damian Garcia on 11/26/2017.
@@ -25,4 +26,6 @@ public interface RiderEndPoints {
             @Path("id_chofer") String id_chofer,
             @Path("id_request") String id_request
     );
+
+
 }
