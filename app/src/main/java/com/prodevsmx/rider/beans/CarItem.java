@@ -3,6 +3,8 @@ package com.prodevsmx.rider.beans;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
+import com.prodevsmx.rider.APIClients.RequestModels.CarRequest;
+import com.prodevsmx.rider.utils.Base64Utils;
 import com.prodevsmx.rider.utils.DrawableToBitmap;
 import com.prodevsmx.rider.utils.ImageRounder;
 
@@ -21,6 +23,12 @@ public class CarItem {
         this.carImage = bitmapCar;
         this.carTitle = carTitle;
         this.carPlates = carPlates;
+    }
+
+    public CarItem(CarRequest carRequest){
+        this.carTitle = carRequest.getModel();
+        this.carPlates = carRequest.getPlates();
+        this.carImage = Base64Utils.decodeBase64(carRequest.getImageBase64());
     }
 
     public Bitmap getCarImage() {

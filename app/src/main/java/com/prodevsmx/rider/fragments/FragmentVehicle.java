@@ -24,6 +24,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,17 +32,28 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.facebook.internal.Utility;
+import com.prodevsmx.rider.APIClients.ApiUtils;
+import com.prodevsmx.rider.APIClients.RequestModels.CarRequest;
+import com.prodevsmx.rider.APIClients.RiderEndPoints;
 import com.prodevsmx.rider.ActivityLand;
 import com.prodevsmx.rider.Adapters.AdapterCars;
 import com.prodevsmx.rider.Adapters.AdapterEventsNearby;
 import com.prodevsmx.rider.R;
+import com.prodevsmx.rider.Settings.Identity;
+import com.prodevsmx.rider.beans.BackEndModels.PickUpRequest;
 import com.prodevsmx.rider.beans.CarItem;
 import com.prodevsmx.rider.beans.EventNearbyItem;
+import com.prodevsmx.rider.beans.PendingRequestItem;
 import com.prodevsmx.rider.beans.SocialContact;
 
 import java.io.File;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 import static com.facebook.FacebookSdk.getApplicationContext;
@@ -72,6 +84,8 @@ public class FragmentVehicle extends android.support.v4.app.Fragment {
     private static final int TAKE_PHOTO = 101;
     Uri imageUri;
 
+    RiderEndPoints mRiderEndPoints;
+    AdapterCars adapterCars;
 
     public FragmentVehicle() {
     }
@@ -87,6 +101,8 @@ public class FragmentVehicle extends android.support.v4.app.Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         v = view;
+        mRiderEndPoints = ApiUtils.getRiderService();
+
         recyclerViewCars = v.findViewById(R.id.recyclerViewVehicles);
         fabCarRegistration = v.findViewById(R.id.fabAddVehicle);
         initializeViews();
@@ -104,22 +120,63 @@ public class FragmentVehicle extends android.support.v4.app.Fragment {
 
         Drawable drawable = getResources().getDrawable(R.drawable.fiesta, getActivity().getTheme());
         CarItem item = new CarItem(drawable, "Ford Fiesta 2016", "JMH-47-51");
-        carItems.add(item);
+       // carItems.add(item);
 
         drawable = getResources().getDrawable(R.drawable.porsche, getActivity().getTheme());
         item = new CarItem(drawable, "Porsche 911 S", "JNU-17-58");
-        carItems.add(item);
+        //carItems.add(item);
+
+        mRiderEndPoints.getCars(Identity.getUserId()).enqueue(new Callback<List<CarRequest>>() {
+            @Override
+            public void onResponse(Call<List<CarRequest>> call, Response<List<CarRequest>> response) {
+                if(response.isSuccessful()) {
+                    List<CarRequest> responseList =  response.body();
+                    for(CarRequest p : responseList){
+                        carItems.add((new CarItem(p)));
+                    }
+                    adapterCars.notifyDataSetChanged();
+                }else {
+                    int statusCode  = response.code();
+                    // handle request errors depending on status code
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<CarRequest>> call, Throwable t) {
+
+            }
+        });
 
     }
 
     private void addCar(Drawable carImage, String modelName, String plates){
         CarItem item = new CarItem(carImage, modelName, plates);
         carItems.add(item);
+
+        final CarRequest carRequest = new CarRequest(item);
+
+        mRiderEndPoints.storeCar(carRequest, Identity.getUserId()).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()) {
+                    Log.d("Storing car", "We are storing a car");
+                }else {
+                    int statusCode  = response.code();
+                    // handle request errors depending on status code
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+
         displayCarsInRecyler();
     }
 
     private void displayCarsInRecyler(){
-        AdapterCars adapterCars = new AdapterCars(carItems, getContext());
+        adapterCars = new AdapterCars(carItems, getContext());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerViewCars.setLayoutManager(layoutManager);
         recyclerViewCars.setAdapter(adapterCars);

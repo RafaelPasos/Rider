@@ -1,10 +1,12 @@
 package com.prodevsmx.rider.APIClients;
 
+import com.prodevsmx.rider.APIClients.RequestModels.CarRequest;
 import com.prodevsmx.rider.beans.BackEndModels.PickUpRequest;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -27,5 +29,14 @@ public interface RiderEndPoints {
             @Path("id_request") String id_request
     );
 
+    @POST("/api/User/{id_usuario}/RegistrarVehiculo")
+    Call<Void> storeCar(
+            @Body CarRequest carro,
+            @Path("id_usuario") String id_usuario
+    );
 
+    @GET("/api/User/{id_usuario}/GetVehiculos")
+    Call<List<CarRequest>> getCars(
+            @Path("id_usuario") String id_usuario
+    );
 }
