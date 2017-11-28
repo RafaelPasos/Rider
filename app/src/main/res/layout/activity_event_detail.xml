@@ -23,6 +23,15 @@
         android:layout_marginStart="@dimen/marginUIComponent"
         android:layout_marginTop="@dimen/marginUIComponent"
         />
+    <TextView
+        android:id="@+id/txt_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvRidePickup"
+        android:text="GUADALAJARA"
+        android:layout_marginStart="@dimen/marginUIComponent"
+        android:layout_marginTop="@dimen/marginUIComponent"
+        />
 
     <Button
         android:id="@+id/btnEventGO"
@@ -38,12 +47,12 @@
         />
 
     <fragment
-        android:id="@+id/rideMapFragment"
-        android:name="com.google.android.gms.maps.MapFragment"
+        android:id="@+id/eventMapFragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_margin="@dimen/marginUIComponent"
-        android:layout_below="@+id/tvRidePickup"
+        android:layout_below="@+id/txt_location"
         />
 
     <LinearLayout
@@ -52,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/rlEventDetail"
-        android:layout_below="@id/rideMapFragment"
+        android:layout_below="@id/eventMapFragment"
         android:layout_marginStart="@dimen/marginUIComponent"
         android:layout_marginEnd="@dimen/marginUIComponent"
         >
