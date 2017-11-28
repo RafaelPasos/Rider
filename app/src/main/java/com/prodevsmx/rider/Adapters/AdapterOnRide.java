@@ -1,6 +1,5 @@
 package com.prodevsmx.rider.Adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -62,9 +61,9 @@ public class AdapterOnRide extends RecyclerView.Adapter<AdapterOnRide.ViewHolder
         public ViewHolder(final View itemView) {
             super(itemView);
             userImage = (ImageView) itemView.findViewById(R.id.ivUserRequestImageRide);
-            userName = (TextView) itemView.findViewById(R.id.tvUserRequestNameRide);
-            userLocation = (TextView) itemView.findViewById(R.id.tv_requestPickPointRide);
-            userMode = (Button) itemView.findViewById(R.id.btnPickUpRide);
+            userName = (TextView) itemView.findViewById(R.id.tvRequestDriverName);
+            userLocation = (TextView) itemView.findViewById(R.id.tv_requestDriverPoint);
+            userMode = (Button) itemView.findViewById(R.id.btnRequestRide);
             userMode.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

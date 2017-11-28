@@ -97,8 +97,8 @@
         <activity
             android:name=".ActivityEventDetail"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeCustom"
-            ></activity>
+            android:theme="@style/AppThemeCustom" />
+        <activity android:name=".ActivityChooseDriver"></activity>
     </application>
 
 </manifest>

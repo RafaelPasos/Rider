@@ -1,6 +1,5 @@
 package com.prodevsmx.rider;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.prodevsmx.rider.Adapters.AdapterOnRide;
-import com.prodevsmx.rider.Adapters.AdapterPassengers;
 import com.prodevsmx.rider.beans.PendingRequestItem;
 
 import java.util.ArrayList;
@@ -26,7 +24,7 @@ public class ActivityRide extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ride);
-        button = findViewById(R.id.btnPickUpRide);
+        button = findViewById(R.id.btnRequestRide);
         passengers = (RecyclerView) findViewById(R.id.recycler_view_passengersRide);
         PendingRequestItem item = new PendingRequestItem(
                 "https://media.pitchfork.com/photos/59299367c0084474cd0bead4/1:1/w_300/90179474.jpg",

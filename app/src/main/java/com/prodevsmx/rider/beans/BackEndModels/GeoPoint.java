@@ -32,4 +32,9 @@ public class GeoPoint {
         this.type = type;
         this.coordinates = coordinates;
     }
+
+    @Override
+    public String toString() {
+        return "type : " + type;
+    }
 }
