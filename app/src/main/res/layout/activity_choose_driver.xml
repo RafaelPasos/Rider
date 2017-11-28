@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.prodevsmx.rider.ActivityChooseDriver">
+
+    <include
+        android:id="@+id/rider_toolbar_driver"
+        layout="@layout/rider_toolbar"
+        ></include>
+
+    <Button
+        android:id="@+id/btn_finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Finish"
+        android:textColor="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/marginUIComponent"
+        android:background="@drawable/button_primary"
+        android:textSize="22sp"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rider_toolbar_driver"
+        android:id="@+id/recycler_view_drivers"
+        android:layout_above="@id/btn_finish">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+</RelativeLayout>

@@ -295,7 +295,5 @@ public class FragmentVehicle extends android.support.v4.app.Fragment {
         Intent openCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(openCamera, TAKE_PHOTO);
     }
-
-
 }
 

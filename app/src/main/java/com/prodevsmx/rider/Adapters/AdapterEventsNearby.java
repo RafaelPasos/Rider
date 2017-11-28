@@ -1,8 +1,11 @@
 package com.prodevsmx.rider.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.prodevsmx.rider.ActivityEventDetail;
 import com.prodevsmx.rider.R;
 import com.prodevsmx.rider.beans.EventNearbyItem;
 import com.prodevsmx.rider.utils.RoundedCornersTransform;
@@ -55,6 +59,18 @@ public class AdapterEventsNearby extends RecyclerView.Adapter<AdapterEventsNearb
         holder.eventDate.setText(item.getEventDate());
         Picasso.with(context).load("https://graph.facebook.com/" + item.getId() + "/picture").transform(new RoundedCornersTransform()).into(holder.eventImage);
         holder.itemView.setTag(item);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle data = new Bundle();
+                data.putString("id", item.getId());
+                Intent i = new Intent(context, ActivityEventDetail.class);
+                i.putExtras(data);
+                context.startActivity(i);
+
+                //((Activity) context).finish();
+            }
+        });
     }
 
     @Override public int getItemCount() {

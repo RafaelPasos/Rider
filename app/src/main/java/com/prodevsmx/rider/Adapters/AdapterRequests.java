@@ -13,7 +13,6 @@ import com.prodevsmx.rider.APIClients.ApiUtils;
 import com.prodevsmx.rider.APIClients.RiderEndPoints;
 import com.prodevsmx.rider.R;
 import com.prodevsmx.rider.Settings.Identity;
-import com.prodevsmx.rider.beans.BackEndModels.PickUpRequest;
 import com.prodevsmx.rider.beans.PendingRequestItem;
 import com.prodevsmx.rider.utils.RoundedCornersTransform;
 import com.squareup.picasso.Picasso;
@@ -110,8 +109,8 @@ public class AdapterRequests extends RecyclerView.Adapter<AdapterRequests.ViewHo
         public ViewHolder(View itemView) {
             super(itemView);
             userImage = (ImageView) itemView.findViewById(R.id.ivUserRequestImageRide);
-            userName = (TextView) itemView.findViewById(R.id.tvUserRequestNameRide);
-            userLocation = (TextView) itemView.findViewById(R.id.tv_requestPickPointRide);
+            userName = (TextView) itemView.findViewById(R.id.tvRequestDriverName);
+            userLocation = (TextView) itemView.findViewById(R.id.tv_requestDriverPoint);
             userMode = (TextView) itemView.findViewById(R.id.tv_requestUserMode);
             requestId = (TextView) itemView.findViewById(R.id.tv_request_id);
         }

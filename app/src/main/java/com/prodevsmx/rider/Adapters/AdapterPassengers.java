@@ -60,8 +60,8 @@ public class AdapterPassengers extends RecyclerView.Adapter<AdapterPassengers.Vi
         public ViewHolder(View itemView) {
             super(itemView);
             userImage = (ImageView) itemView.findViewById(R.id.ivUserRequestImageRide);
-            userName = (TextView) itemView.findViewById(R.id.tvUserRequestNameRide);
-            userLocation = (TextView) itemView.findViewById(R.id.tv_requestPickPointRide);
+            userName = (TextView) itemView.findViewById(R.id.tvRequestDriverName);
+            userLocation = (TextView) itemView.findViewById(R.id.tv_requestDriverPoint);
             userMode = (TextView) itemView.findViewById(R.id.tv_requestUserMode);
         }
     }

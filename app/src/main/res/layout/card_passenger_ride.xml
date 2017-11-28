@@ -17,7 +17,7 @@
         android:layout_centerVertical="true"
         >
         <TextView
-            android:id="@+id/tvUserRequestNameRide"
+            android:id="@+id/tvRequestDriverName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="User name"
@@ -26,16 +26,16 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/tv_requestPickPointRide"
+            android:id="@+id/tv_requestDriverPoint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="User Pick Location"
             android:textColor="@color/colorPrimary"
-            android:layout_below="@+id/tvUserRequestNameRide"
+            android:layout_below="@+id/tvRequestDriverName"
             android:textSize="16sp"
             />
         <Button
-            android:id="@+id/btnPickUpRide"
+            android:id="@+id/btnRequestRide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pick User"
