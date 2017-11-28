@@ -6,6 +6,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
@@ -16,8 +17,12 @@ import retrofit2.http.Path;
 public interface RiderEndPoints {
     @GET("/api/chofer/PendingRequests/{id}")
     Call<List<PickUpRequest>> requestForUser(
-        @Path("id") String id
+            @Path("id") String id
     );
 
-
+    @POST("/api/chofer/{id_chofer}/Accept/{id_request}")
+    Call<Void> acceptRequest(
+            @Path("id_chofer") String id_chofer,
+            @Path("id_request") String id_request
+    );
 }

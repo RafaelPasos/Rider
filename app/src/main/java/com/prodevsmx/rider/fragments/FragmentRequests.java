@@ -73,7 +73,7 @@ public class FragmentRequests extends android.support.v4.app.Fragment{
         item = new PendingRequestItem("https://media.pitchfork.com/photos/59299367c0084474cd0bead4/1:1/w_300/90179474.jpg", "Rogelio Rámirez", "Av. México", "Pasajero");
         pendingRequestItems.add(item);
 */
-        mRiderEndPoints.requestForUser("asdasdasd").enqueue(new Callback<List<PickUpRequest>>() {
+        mRiderEndPoints.requestForUser("p1").enqueue(new Callback<List<PickUpRequest>>() {
             @Override
             public void onResponse(Call<List<PickUpRequest>> call, Response<List<PickUpRequest>> response) {
                 if(response.isSuccessful()) {

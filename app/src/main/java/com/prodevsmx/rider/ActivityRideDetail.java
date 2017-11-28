@@ -79,7 +79,13 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         SupportMapFragment mapFragment =  (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         passengers = (RecyclerView) findViewById(R.id.recycler_view_passengersRide);
-        PendingRequestItem item = new PendingRequestItem("https://media.pitchfork.com/photos/59299367c0084474cd0bead4/1:1/w_300/90179474.jpg", "Susana Mérces", "Trapani", "Pasajero");
+        PendingRequestItem item = new PendingRequestItem(
+                "https://media.pitchfork.com/photos/59299367c0084474cd0bead4/1:1/w_300/90179474.jpg",
+                "Susana Mérces",
+                "Trapani",
+                "Pasajero",
+                "request1");
+
         for (int i=0; i<3; i++){
             pass.add(item);
         }

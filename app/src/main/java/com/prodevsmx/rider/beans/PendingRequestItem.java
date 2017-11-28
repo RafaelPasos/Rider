@@ -17,13 +17,14 @@ public class PendingRequestItem {
     String userName;
     String mode;
     String pickup;
+    String request_id;
 
-
-    public PendingRequestItem(String userImage, String userName, String pickup, String mode) {
+    public PendingRequestItem(String userImage, String userName, String pickup, String mode, String request_id) {
         this.userImage = userImage;
         this.userName = userName;
         this.mode = mode;
         this.pickup = pickup;
+        this.request_id = request_id;
     }
 
     public String getUserImage() {
@@ -58,13 +59,22 @@ public class PendingRequestItem {
         this.pickup = pickup;
     }
 
+    public String getRequest_id() {
+        return request_id;
+    }
+
+    public void setRequest_id(String request_id) {
+        this.request_id = request_id;
+    }
+
     public static PendingRequestItem backEndModelMapper(PickUpRequest backEndModel){
         String userImage = "https://media.pitchfork.com/photos/59299367c0084474cd0bead4/1:1/w_300/90179474.jpg";
         String userName = backEndModel.getPasajero().getName();
         String mode = "pasajero";
         String pickup = backEndModel.getAddress();
+        String id = backEndModel.get_id();
 
-        PendingRequestItem  generated =  new PendingRequestItem(userImage, userName, mode, pickup);
+        PendingRequestItem  generated =  new PendingRequestItem(userImage, userName, mode, pickup, id);
         return generated;
     }
 }

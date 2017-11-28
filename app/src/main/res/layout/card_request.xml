@@ -46,6 +46,13 @@
             android:layout_marginEnd="@dimen/marginUIComponent"
             android:textSize="16sp"
             />
+
+        <TextView
+            android:id="@+id/tv_request_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            />
     </RelativeLayout>
 
     <View
