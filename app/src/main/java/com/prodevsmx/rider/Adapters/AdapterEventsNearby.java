@@ -21,6 +21,8 @@ import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,7 +58,17 @@ public class AdapterEventsNearby extends RecyclerView.Adapter<AdapterEventsNearb
         //holder.eventImage.setImageBitmap(item.getEventImage());
         holder.eventName.setText(item.getNameEvent());
         holder.eventPlace.setText(item.getEventPlace());
-        holder.eventDate.setText(item.getEventDate());
+        Date date = null;
+        String formattedDate = "";
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss-SSSS").parse(item.getEventDate());
+            formattedDate = new SimpleDateFormat("dd/MM/yyyy, Ka").format(date);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        holder.eventDate.setText(formattedDate);
         Picasso.with(context).load("https://graph.facebook.com/" + item.getId() + "/picture").transform(new RoundedCornersTransform()).into(holder.eventImage);
         holder.itemView.setTag(item);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
