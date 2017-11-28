@@ -1,9 +1,11 @@
 package com.prodevsmx.rider;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -106,10 +108,18 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
                 "Trapani",
                 "Pasajero",
                 "request1");
+        PendingRequestItem item1 = new PendingRequestItem(
+                "https://media.pitchfork.com/photos/59299367c0084474cd0bead4/1:1/w_300/90179474.jpg",
+                "Arcana Macana",
+                "Av. Puritana",
+                "Pasajero",
+                "request2");
 
         for (int i=0; i<3; i++){
             pass.add(item);
         }
+        pass.add(item1);
+
         AdapterPassengers adapter = new AdapterPassengers(pass, this);
         //LinearLayoutManager layoutManager = new LinearLayoutManager(this), LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -119,10 +129,24 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdapterOnRide adapter = new AdapterOnRide(pass, ActivityRideDetail.this);
-                passengers.setAdapter(adapter);
-                button.setText("End ride");
-                onTravel = true;
+                if(onTravel){
+                    Intent i = new Intent(ActivityRideDetail.this, ActivityEndRide.class);
+                    startActivity(i);
+                }else {
+                    AdapterOnRide adapter = new AdapterOnRide(pass, ActivityRideDetail.this);
+                    passengers.setAdapter(adapter);
+                    Uri.Builder builder = new Uri.Builder();
+                    builder.scheme("https")
+                            .authority("www.google.com").appendPath("maps").appendPath("dir").appendPath("").appendQueryParameter("api", "1")
+                            .appendQueryParameter("destination", 20.676494 + "," + -103.430730).appendQueryParameter("waypoints", 20.645493  +"," + -103.401261+"|"+20.665649  +"," + -103.393888);
+                    String url = builder.build().toString();
+                    Log.d("Directions", url);
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                    button.setText("End ride");
+                    onTravel = true;
+                }
             }
         });
     }
@@ -146,11 +170,8 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         PendingRequestItem p = pass.get(pos);
         destinoActual = p.getPickupPoint();
         getLocation();
-
+        Log.d("PICKED: ", p.getUserName());
     }
 
-    public void calculateRoute(){
-
-    }
 
 }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.prodevsmx.rider.ActivityEndRide">
+
+    <include
+        android:id="@+id/rider_toolbar_end"
+        layout="@layout/rider_toolbar"
+        ></include>
+
+    <TextView
+        android:id="@+id/tvEndRide"
+        android:text="End of ride"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:textColor="@color/colorAccentDark"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/rider_toolbar_end"/>
+
+    <TextView
+        android:id="@+id/tvSavedMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/tvEndRide"
+        android:text="$ 70"
+        />
+
+    <TextView
+        android:id="@+id/tvSaveMoreMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:layout_margin="20dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/tvSavedMoney"
+        android:text="Keep using rider to support the environment"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/button_primary"
+        android:layout_margin="@dimen/marginUIComponent"
+        android:text="Return to Explore"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:onClick="goHome"
+        />
+
+</RelativeLayout>
