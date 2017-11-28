@@ -1,15 +1,20 @@
 package com.prodevsmx.rider;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -17,6 +22,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.prodevsmx.rider.Adapters.AdapterOnRide;
 import com.prodevsmx.rider.Adapters.AdapterPassengers;
 import com.prodevsmx.rider.beans.PendingRequestItem;
@@ -24,12 +30,14 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyCallback{
 
     List<PendingRequestItem> pass = new ArrayList<PendingRequestItem>();
     SupportMapFragment supportMapFragment;
     private GoogleMap mMap;
+    private FusedLocationProviderClient mFusedLocationClient;
     View v;
     RecyclerView passengers;
     ImageView eventImage;
@@ -47,6 +55,10 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         CameraPosition cp = new CameraPosition.Builder().zoom(15).target(sydney).build();
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cp));
+    }
+
+    public void updateRoute(LatLng latLng){
+
     }
 
     @Override
@@ -96,12 +108,22 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
                 passengers.setAdapter(adapter);
                 button.setText("End ride");
                 onTravel = true;
-
             }
         });
-
-
-
     }
 
+
+    public void getLocation(){
+        try {
+            mFusedLocationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+
+                }
+            });
+        }
+        catch(SecurityException e){
+
+        }
+    }
 }

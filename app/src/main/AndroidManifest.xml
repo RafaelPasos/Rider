@@ -35,8 +35,7 @@
             android:name=".ActivityLand"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeCustom"
-            android:windowSoftInputMode="adjustPan"
-            />
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".SplashScreenActivity"
             android:screenOrientation="portrait"
@@ -90,14 +89,16 @@
         <activity
             android:name=".ActivityRideDetail"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeCustom"></activity>
-
+            android:theme="@style/AppThemeCustom" />
         <activity
             android:name=".ActivityRide"
             android:screenOrientation="portrait"
+            android:theme="@style/AppThemeCustom" />
+        <activity
+            android:name=".ActivityEventDetail"
+            android:screenOrientation="portrait"
             android:theme="@style/AppThemeCustom"
             ></activity>
-
     </application>
 
 </manifest>
