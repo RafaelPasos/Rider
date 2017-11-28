@@ -21,6 +21,7 @@
         android:layout_margin="@dimen/marginUIComponent"
         android:background="@drawable/button_primary"
         android:textSize="22sp"
+        android:onClick="goHomePls"
         />
 
     <android.support.v7.widget.RecyclerView

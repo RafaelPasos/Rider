@@ -98,8 +98,14 @@
             android:name=".ActivityEventDetail"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeCustom" />
-        <activity android:name=".ActivityChooseDriver" />
-        <activity android:name=".ActivityEndRide"></activity>
+        <activity
+            android:name=".ActivityChooseDriver"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeCustom"
+            />
+        <activity android:name=".ActivityEndRide"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeCustom"></activity>
     </application>
 
 </manifest>

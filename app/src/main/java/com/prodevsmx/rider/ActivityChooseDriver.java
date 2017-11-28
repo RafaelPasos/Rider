@@ -1,9 +1,11 @@
 package com.prodevsmx.rider;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.prodevsmx.rider.Adapters.AdapterDriver;
 import com.prodevsmx.rider.beans.BackEndModels.GeoPoint;
@@ -43,4 +45,11 @@ public class ActivityChooseDriver extends AppCompatActivity {
         recyclerViewDrivers.setAdapter(ad);
 
     }
+
+    public void goHomePls(View view){
+        Intent i = new Intent(ActivityChooseDriver.this, ActivityLand.class);
+        startActivity(i);
+        finish();
+    }
+
 }

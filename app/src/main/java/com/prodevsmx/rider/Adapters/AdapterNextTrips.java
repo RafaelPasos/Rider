@@ -47,7 +47,7 @@ public class AdapterNextTrips  extends RecyclerView.Adapter<AdapterNextTrips.Vie
         holder.eventDate.setText(item.getEventDate());
         //not Now
         //Bitmap eventBitmap = ImageRounder.getRoundedBitmap(DrawableToBitmap.drawableToBitmap(item.getEventImage().getDrawable()));
-        Picasso.with(context).load(item.getEventImage()).transform(new RoundedCornersTransform()).into(holder.eventImage);
+        Picasso.with(context).load(item.getId()).transform(new RoundedCornersTransform()).into(holder.eventImage);
         holder.itemView.setTag(item);
     }
 
@@ -78,6 +78,7 @@ public class AdapterNextTrips  extends RecyclerView.Adapter<AdapterNextTrips.Vie
                     String eventPlace = items.get(getAdapterPosition()).getEventPlace();
                     String eventDate = items.get(getAdapterPosition()).getEventDate();
                     Bundle data = new Bundle();
+                    data.putString("id", items.get(getAdapterPosition()).getId());
                     data.putString("image", eventDate);
                     data.putString("name", eventName);
                     data.putString("place", eventPlace);

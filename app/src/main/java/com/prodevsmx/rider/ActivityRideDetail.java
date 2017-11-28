@@ -80,9 +80,11 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         Bundle extras = getIntent().getExtras();
         String eventImageStr;
         String eventNameStr;
+        String eventId;
         String eventPlaceStr;
         String eventDateStr;
 
+        eventId = extras.getString("id");
         eventImageStr = extras.getString("image");
         eventNameStr = extras.getString("name");
         eventPlaceStr = extras.getString("place");
@@ -96,28 +98,26 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         eventPlace.setText(eventPlaceStr);
         eventDate.setText(eventDateStr);
 
-        Picasso.with(this).load("https://media.pitchfork.com/photos/59299367c0084474cd0bead4/1:1/w_300/90179474.jpg").into(eventImage);
+        Picasso.with(this).load(eventId).into(eventImage);
         //Picasso.with(this).load("https://graph.facebook.com/" + eventImageStr + "/picture").into(eventImage);
 
         SupportMapFragment mapFragment =  (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         passengers = (RecyclerView) findViewById(R.id.recycler_view_passengersRide);
         PendingRequestItem item = new PendingRequestItem(
-                "https://media.pitchfork.com/photos/59299367c0084474cd0bead4/1:1/w_300/90179474.jpg",
+                "http://i.ytimg.com/vi/w5ZaHJ8ItaY/maxresdefault.jpg",
                 "Susana Mérces",
-                "Trapani",
+                "Av. Carnero 1247",
                 "Pasajero",
                 "request1");
+        pass.add(item);
         PendingRequestItem item1 = new PendingRequestItem(
-                "https://media.pitchfork.com/photos/59299367c0084474cd0bead4/1:1/w_300/90179474.jpg",
+                "http://www.abt.org/images/db_images/dancers/waskiweb.jpg",
                 "Arcana Macana",
-                "Av. Puritana",
+                "Av. Puritana 6879",
                 "Pasajero",
                 "request2");
 
-        for (int i=0; i<3; i++){
-            pass.add(item);
-        }
         pass.add(item1);
 
         AdapterPassengers adapter = new AdapterPassengers(pass, this);

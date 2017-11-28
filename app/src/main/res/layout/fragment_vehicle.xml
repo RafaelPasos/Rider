@@ -5,15 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.prodevsmx.rider.fragments.FragmentVehicle">
 
-    <TextView
-        android:id="@+id/tvUserNameVehicles"
-        android:textSize="@dimen/textSizeTitle"
-        android:text="@string/provisionalUserName"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorAccent"
-        />
 
     <TextView
         android:id="@+id/tvRegisteredVehicles"
@@ -24,7 +15,6 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimary"
         android:layout_marginTop="@dimen/marginUIComponent"
-        android:layout_below="@id/tvUserNameVehicles"
         />
 
     <android.support.design.widget.FloatingActionButton
