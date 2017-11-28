@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -22,6 +23,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.prodevsmx.rider.Adapters.AdapterOnRide;
 import com.prodevsmx.rider.Adapters.AdapterPassengers;
@@ -46,6 +48,10 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
     TextView eventDate;
     Button button;
     boolean onTravel = false;
+    LatLng posActual = new LatLng(20.65, -103.34);
+    ArrayList<LatLng> destinos = new ArrayList<>();
+    LatLng destinoActual;
+    PolylineOptions polylineOptions;
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -58,14 +64,17 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
     }
 
     public void updateRoute(LatLng latLng){
-
+        mMap.addMarker(new MarkerOptions().position(latLng).title("Marker in your position"));
+        CameraPosition cp = new CameraPosition.Builder().zoom(15).target(latLng).build();
+        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cp));
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ride_detail);
-
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        getLocation();
         Bundle extras = getIntent().getExtras();
         String eventImageStr;
         String eventNameStr;
@@ -118,13 +127,13 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         });
     }
 
-
     public void getLocation(){
         try {
             mFusedLocationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
-
+                    posActual = new LatLng(location.getLatitude(), location.getLongitude());
+                    updateRoute(posActual);
                 }
             });
         }
@@ -132,4 +141,16 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
 
         }
     }
+
+    public void pickupUser(int pos){
+        PendingRequestItem p = pass.get(pos);
+        destinoActual = p.getPickupPoint();
+        getLocation();
+
+    }
+
+    public void calculateRoute(){
+
+    }
+
 }

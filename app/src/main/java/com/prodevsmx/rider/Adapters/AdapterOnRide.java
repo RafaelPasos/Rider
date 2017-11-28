@@ -1,5 +1,6 @@
 package com.prodevsmx.rider.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.prodevsmx.rider.ActivityRideDetail;
 import com.prodevsmx.rider.R;
 import com.prodevsmx.rider.beans.PendingRequestItem;
 import com.prodevsmx.rider.utils.RoundedCornersTransform;
@@ -57,7 +59,7 @@ public class AdapterOnRide extends RecyclerView.Adapter<AdapterOnRide.ViewHolder
         TextView userLocation;
         Button userMode;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             userImage = (ImageView) itemView.findViewById(R.id.ivUserRequestImageRide);
             userName = (TextView) itemView.findViewById(R.id.tvUserRequestNameRide);
@@ -68,6 +70,10 @@ public class AdapterOnRide extends RecyclerView.Adapter<AdapterOnRide.ViewHolder
                 public void onClick(View view) {
                     userMode.setText("Picked Up");
                     userMode.setEnabled(false);
+                    int i = getAdapterPosition();
+                    if(c instanceof ActivityRideDetail){
+                        ((ActivityRideDetail)c).pickupUser(i);
+                    }
                 }
             });
 

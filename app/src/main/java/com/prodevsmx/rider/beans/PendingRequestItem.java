@@ -3,6 +3,7 @@ package com.prodevsmx.rider.beans;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.prodevsmx.rider.beans.BackEndModels.PickUpRequest;
 import com.prodevsmx.rider.utils.DrawableToBitmap;
 import com.prodevsmx.rider.utils.ImageRounder;
@@ -18,12 +19,32 @@ public class PendingRequestItem {
     String mode;
     String pickup;
     String request_id;
+    LatLng pickupPoint;
+
+
 
     public PendingRequestItem(String userImage, String userName, String pickup, String mode, String request_id) {
         this.userImage = userImage;
         this.userName = userName;
         this.mode = mode;
         this.pickup = pickup;
+        this.request_id = request_id;
+    }
+
+    public PendingRequestItem(String userImage, String userName, LatLng pickupPoint, String mode, String request_id) {
+        this.userImage = userImage;
+        this.userName = userName;
+        this.mode = mode;
+        this.pickupPoint = pickupPoint;
+        this.request_id = request_id;
+    }
+
+    public PendingRequestItem(String userImage, String userName, String pickup, LatLng pickupPoint, String mode, String request_id) {
+        this.userImage = userImage;
+        this.userName = userName;
+        this.mode = mode;
+        this.pickup = pickup;
+        this.pickupPoint = pickupPoint;
         this.request_id = request_id;
     }
 
@@ -76,5 +97,14 @@ public class PendingRequestItem {
 
         PendingRequestItem  generated =  new PendingRequestItem(userImage, userName, mode, pickup, id);
         return generated;
+    }
+
+
+    public LatLng getPickupPoint() {
+        return pickupPoint;
+    }
+
+    public void setPickupPoint(LatLng pickupPoint) {
+        this.pickupPoint = pickupPoint;
     }
 }
