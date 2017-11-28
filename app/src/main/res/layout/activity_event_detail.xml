@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.prodevsmx.rider.ActivityEventDetail">
+
+    <include
+        layout="@layout/rider_toolbar"
+        android:id="@+id/rider_toolbar_Event_Detail"
+        ></include>
+
+    <TextView
+        android:id="@+id/tvRidePickup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pickup Location"
+        android:textColor="@color/colorAccent"
+        android:textSize="22sp"
+        android:layout_below="@id/rider_toolbar_Event_Detail"
+        android:layout_marginStart="@dimen/marginUIComponent"
+        android:layout_marginTop="@dimen/marginUIComponent"
+        />
+
+    <Button
+        android:id="@+id/btnEventGO"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Next"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:background="@drawable/button_primary"
+        android:layout_margin="@dimen/marginUIComponent"
+        />
+
+    <fragment
+        android:id="@+id/rideMapFragment"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_margin="@dimen/marginUIComponent"
+        android:layout_below="@+id/tvRidePickup"
+        />
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rlEventDetail"
+        android:layout_below="@id/rideMapFragment"
+        android:layout_marginStart="@dimen/marginUIComponent"
+        android:layout_marginEnd="@dimen/marginUIComponent"
+        >
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DRIVER"
+            android:layout_weight=".5"
+            android:onClick="selectMode"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PASSENGER"
+            android:onClick="selectMode"
+            android:layout_weight=".5"/>
+
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spinnerSelectCar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlEventDetail"
+        android:layout_margin="@dimen/marginUIComponent"
+        android:spinnerMode="dialog"
+
+        >
+
+    </Spinner>
+
+
+</RelativeLayout>
