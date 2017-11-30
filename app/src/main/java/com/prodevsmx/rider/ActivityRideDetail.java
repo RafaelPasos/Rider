@@ -1,7 +1,9 @@
 package com.prodevsmx.rider;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -54,6 +56,10 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
     ArrayList<LatLng> destinos = new ArrayList<>();
     LatLng destinoActual;
     PolylineOptions polylineOptions;
+    String rideStatus;
+    String eventName_txt;
+    SharedPreferences sp;
+    SharedPreferences.Editor editor;
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -79,7 +85,7 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         getLocation();
         Bundle extras = getIntent().getExtras();
         String eventImageStr;
-        String eventNameStr;
+        final String eventNameStr;
         String eventId;
         String eventPlaceStr;
         String eventDateStr;
@@ -126,13 +132,40 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         passengers.setLayoutManager(layoutManager);
         passengers.setAdapter(adapter);
 
+        onTravel = false;
+        sp = this.getSharedPreferences("com.prodevsmx.rider.prefs", Context.MODE_PRIVATE);
+        Log.d("#", "1");
+        if(sp.contains("com_prodevsmx_rider_trip_started")) {
+            rideStatus = sp.getString("com_prodevsmx_rider_trip_started", null);
+            onTravel = rideStatus.equals("true");
+            if(!eventName.equals(sp.getString("com_prodevsmx_rider_trip_name", null)))
+                button.setText("End ride " + sp.getString("com_prodevsmx_rider_trip_name", null));
+        }
+//        Log.d("Status",  sp.getString("com_prodevsmx_rider_trip_started", null));
+//       if(sp.contains("com_prodevsmx_rider_trip_name"))
+//            Log.d("Name",  sp.getString("com_prodevsmx_rider_trip_name", null));        editor = sp.edit();
+
+
+
+        if(onTravel)
+            if(sp.contains("com_prodevsmx_rider_trip_name"))
+                eventName_txt = sp.getString("com_prodevsmx_rider_trip_name", null);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(onTravel){
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.remove("com_prodevsmx_rider_trip_started");
+                    editor.remove("com_prodevsmx_rider_trip_name");
+                    editor.commit();
                     Intent i = new Intent(ActivityRideDetail.this, ActivityEndRide.class);
                     startActivity(i);
                 }else {
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putString("com_prodevsmx_rider_trip_started","true");
+                    editor.putString("com_prodevsmx_rider_trip_name", eventNameStr);
+                    editor.commit();
                     AdapterOnRide adapter = new AdapterOnRide(pass, ActivityRideDetail.this);
                     passengers.setAdapter(adapter);
                     Uri.Builder builder = new Uri.Builder();
@@ -144,11 +177,11 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(url));
                     startActivity(i);
-                    button.setText("End ride");
-                    onTravel = true;
+                    button.setText("End ride " + eventNameStr);
                 }
             }
         });
+
     }
 
     public void getLocation(){

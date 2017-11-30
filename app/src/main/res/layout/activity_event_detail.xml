@@ -65,7 +65,6 @@
         android:layout_marginStart="@dimen/marginUIComponent"
         android:layout_marginEnd="@dimen/marginUIComponent"
         >
-
         <Button
             android:id="@+id/btn_driver_mode"
             android:layout_width="match_parent"
