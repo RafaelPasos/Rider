@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -91,6 +92,11 @@ public class ActivityEventDetail extends AppCompatActivity implements OnMapReady
         if(carSelect.getVisibility() == view.GONE){
             Intent i = new Intent(this, ActivityChooseDriver.class);
             startActivity(i);
+        }else{
+            Toast.makeText(this, "Your ride has been published to compatible users!", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(ActivityEventDetail.this, ActivityLand.class);
+            startActivity(i);
+            finish();
         }
     }
 

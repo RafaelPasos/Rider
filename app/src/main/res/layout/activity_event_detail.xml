@@ -71,6 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="DRIVER"
+            android:background="@drawable/btn_chofer"
             android:layout_weight=".5"
             android:onClick="selectMode"
             />
@@ -79,6 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="PASSENGER"
+            android:background="@drawable/btn_pasajero"
             android:onClick="selectMode"
             android:layout_weight=".5"/>
 
