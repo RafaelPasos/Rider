@@ -134,18 +134,12 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
 
         onTravel = false;
         sp = this.getSharedPreferences("com.prodevsmx.rider.prefs", Context.MODE_PRIVATE);
-        Log.d("#", "1");
         if(sp.contains("com_prodevsmx_rider_trip_started")) {
             rideStatus = sp.getString("com_prodevsmx_rider_trip_started", null);
             onTravel = rideStatus.equals("true");
             if(!eventName.equals(sp.getString("com_prodevsmx_rider_trip_name", null)))
                 button.setText("End ride " + sp.getString("com_prodevsmx_rider_trip_name", null));
         }
-//        Log.d("Status",  sp.getString("com_prodevsmx_rider_trip_started", null));
-//       if(sp.contains("com_prodevsmx_rider_trip_name"))
-//            Log.d("Name",  sp.getString("com_prodevsmx_rider_trip_name", null));        editor = sp.edit();
-
-
 
         if(onTravel)
             if(sp.contains("com_prodevsmx_rider_trip_name"))
@@ -181,7 +175,6 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
                 }
             }
         });
-
     }
 
     public void getLocation(){

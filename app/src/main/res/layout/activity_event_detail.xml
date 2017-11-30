@@ -16,7 +16,7 @@
         android:id="@+id/tvRidePickup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pickup Location"
+        android:text="Start Location"
         android:textColor="@color/colorAccent"
         android:textSize="22sp"
         android:layout_below="@id/rider_toolbar_Event_Detail"

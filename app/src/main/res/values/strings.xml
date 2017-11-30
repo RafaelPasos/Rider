@@ -45,8 +45,4 @@
     </string>
     <string name="appNameUpperCase">RIDER</string>
     <string name="logOut">Log out</string>
-
-    <string name="com_prodevsmx_rider_trip_started">false</string>
-    <string name="com_prodevsmx_rider_trip_name">none</string>
-
 </resources>

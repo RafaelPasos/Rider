@@ -1,9 +1,6 @@
 package com.prodevsmx.rider;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -12,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,9 +24,6 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.prodevsmx.rider.beans.CarItem;
-import com.prodevsmx.rider.fragments.FragmentExplore;
-import com.prodevsmx.rider.fragments.FragmentVehicle;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -105,9 +100,13 @@ public class ActivityEventDetail extends AppCompatActivity implements OnMapReady
         switch (view.getId()) {
             case R.id.btn_driver_mode:
                 carSelect.setVisibility(view.VISIBLE);
+                ((Button)view).setBackgroundResource(R.drawable.btn_selected_left);
+                ((Button)findViewById(R.id.btn_passenger_mode)).setBackgroundResource(R.drawable.btn_deselected_right);
                 break;
             case R.id.btn_passenger_mode:
                 carSelect.setVisibility(view.GONE);
+                ((Button)view).setBackgroundResource(R.drawable.btn_selected_right);
+                ((Button)findViewById(R.id.btn_driver_mode)).setBackgroundResource(R.drawable.btn_deselected_left);
                 break;
         }
     }
@@ -124,7 +123,7 @@ public class ActivityEventDetail extends AppCompatActivity implements OnMapReady
                         addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
                         String address = addresses.get(0).getAddressLine(0);
                         updateRoute(posActual);
-                        locationTV.setText(posActual.toString());
+                        locationTV.setText(address);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

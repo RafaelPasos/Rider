@@ -25,7 +25,6 @@ public class FragmentNextRides extends android.support.v4.app.Fragment{
     View v;
     ArrayList<EventNearbyItem> eventNearbyItems = new ArrayList<>();
     RecyclerView recyclerViewEvents;
-    SharedPreferences sp;
 
     public FragmentNextRides() {
     }
@@ -48,7 +47,6 @@ public class FragmentNextRides extends android.support.v4.app.Fragment{
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerViewEvents.setLayoutManager(layoutManager);
         recyclerViewEvents.setAdapter(adapterEventsNearby);
-        sp = getContext().getSharedPreferences(getString(R.string.com_prodevsmx_rider_trip_started), Context.MODE_PRIVATE);
     }
 
     public void initializeViews(){
