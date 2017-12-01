@@ -205,6 +205,8 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         }
     }
 
+    
+
     public void pickupUser(int pos){
         PendingRequestItem p = pass.get(pos);
         destinoActual = p.getPickupPoint();

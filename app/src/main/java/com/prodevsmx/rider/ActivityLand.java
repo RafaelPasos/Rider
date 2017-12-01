@@ -126,7 +126,7 @@ public class ActivityLand extends AppCompatActivity {
 
                         fragment.setExitTransition(new Fade(2));
                         transaction.replace(R.id.fragmentMain, fragment);
-                        transaction.commit();
+                        transaction.addToBackStack(null).commit();
                         return true;
                     case R.id.navBRequest:
                         changeBottomNavColor(true);
@@ -140,7 +140,7 @@ public class ActivityLand extends AppCompatActivity {
                         fragment.setEnterTransition(new Fade(1));
                         fragment.setExitTransition(new Fade(2));
                         transaction.replace(R.id.fragmentMain, fragment);
-                        transaction.commit();
+                        transaction.addToBackStack(null).commit();
                         return true;
                     case R.id.navBVehicles:
                         changeBottomNavColor(true);
@@ -154,7 +154,7 @@ public class ActivityLand extends AppCompatActivity {
                         fragment.setEnterTransition(new Fade(1));
                         fragment.setExitTransition(new Fade(2));
                         transaction.replace(R.id.fragmentMain, fragment);
-                        transaction.commit();
+                        transaction.addToBackStack(null).commit();
                         return true;
                     case R.id.navBPastRides:
                         changeBottomNavColor(true);
@@ -168,7 +168,7 @@ public class ActivityLand extends AppCompatActivity {
                         fragment.setEnterTransition(new Fade(1));
                         fragment.setExitTransition(new Fade(2));
                         transaction.replace(R.id.fragmentMain, fragment);
-                        transaction.commit();
+                        transaction.addToBackStack(null).commit();
                         return true;
                     case R.id.navBNextRides:
                         itemSearch.setVisible(false);
@@ -182,7 +182,7 @@ public class ActivityLand extends AppCompatActivity {
                         fragment.setEnterTransition(new Fade(1));
                         fragment.setExitTransition(new Fade(2));
                         transaction.replace(R.id.fragmentMain, fragment);
-                        transaction.commit();
+                        transaction.addToBackStack(null).commit();
                         return true;
                 }
                 return false;
@@ -252,7 +252,7 @@ public class ActivityLand extends AppCompatActivity {
             fragment.setEnterTransition(new Fade(1));
             fragment.setExitTransition(new Fade(2));
             transaction.replace(R.id.fragmentMain, fragment, "lol");
-            transaction.commit();
+            transaction.addToBackStack(null).commit();
             return true;
         }
         return super.onOptionsItemSelected(item);

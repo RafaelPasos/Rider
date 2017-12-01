@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -53,12 +54,21 @@ public class AdapterDriver extends RecyclerView.Adapter<AdapterDriver.ViewHolder
         public ImageView driverImage;
         public TextView driverName;
         public TextView driverLocation;
+        public Button btnRequest;
 
         public ViewHolder(View itemView) {
             super(itemView);
             driverImage = (ImageView) itemView.findViewById(R.id.ivUserRequestImageRide);
             driverName = (TextView) itemView.findViewById(R.id.tv_RequestDriverName);
             driverLocation = (TextView) itemView.findViewById(R.id.tv_requestDriverPoint);
+            btnRequest = (Button) itemView.findViewById(R.id.btnRequestRide);
+            btnRequest.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    btnRequest.setEnabled(false);
+                    btnRequest.setText("Request sent");
+                }
+            });
         }
 
     }

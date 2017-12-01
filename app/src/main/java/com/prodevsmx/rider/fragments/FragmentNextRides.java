@@ -49,8 +49,10 @@ public class FragmentNextRides extends android.support.v4.app.Fragment{
         recyclerViewEvents.setAdapter(adapterEventsNearby);
     }
 
+
+
     public void initializeViews(){
-        EventNearbyItem evento = new EventNearbyItem("http://elmerey.com/wp-content/uploads/2017/11/16/Coldplay.jpg", "Coldplay", "Arena VFG", "10 November 2017");
+        EventNearbyItem evento = new EventNearbyItem("http://elmerey.com/wp-content/uploads/2017/11/16/Coldplay.jpg", "Coldplay", "Trasloma", "16 December 2017");
         eventNearbyItems.add(evento);
 
         evento = new EventNearbyItem("http://maxima1067.fm/images/calonchodev-6626.jpg", "Caloncho", "Parque Trasloma", "27 January 2018");

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="10dp"
+    android:layout_margin="@dimen/marginUIComponent"
+    app:cardCornerRadius="10dp"
+    >
+
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginUIComponent"
+        android:elevation="8dp"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:id="@+id/ivPastRide"
+            android:elevation="2dp"
+
+            />
+        <TextView
+            android:id="@+id/tvPastRidesTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Evento"
+            android:layout_alignParentStart="true"
+            android:textColor="@color/colorAccent"
+            android:layout_below="@+id/ivPastRide"
+            />
+        <TextView
+            android:id="@+id/tvPastRidesDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Dia"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tvPastRidesTitle"
+
+            />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
+

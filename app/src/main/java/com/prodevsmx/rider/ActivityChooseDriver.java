@@ -24,17 +24,17 @@ public class ActivityChooseDriver extends AppCompatActivity {
         recyclerViewDrivers = findViewById(R.id.recycler_view_drivers);
 
         Persona per = new Persona();
-        per.setName("aliki");
+        per.setName("Alí Rafael");
         GeoPoint pt = new GeoPoint("", null);
-        pt.type = "home";
+        pt.type = "Aguamarina 3193";
         per.setHome(pt);
         per.setImagen("https://scontent.fgdl3-1.fna.fbcdn.net/v/t1.0-9/14199307_1406476386036245_6742877168913168843_n.jpg?oh=76ffb77445ae9b755b4c23aefda09b10&oe=5A8CC7BA");
         p.add(per);
 
         Persona per2 = new Persona();
-        per2.setName("dami");
+        per2.setName("Damian");
         GeoPoint pt2 = new GeoPoint("", null);
-        pt.type = "casa";
+        pt.type = "Av. Independencia 4509";
         per2.setHome(pt2);
         per2.setImagen("https://scontent.fgdl3-1.fna.fbcdn.net/v/t1.0-9/22780294_1610523835635344_2948924642890879755_n.jpg?oh=b8bc64b2e91f4304fbb03c5a1b09ae1d&oe=5A8ABEA4");
         p.add(per2);

@@ -45,7 +45,20 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/tvSavedMoney"
-        android:text="Keep using rider to support the environment"
+        android:text="Are the total savings made thanks to Rider and You"
+        />
+
+    <TextView
+        android:id="@+id/tvAhorro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:layout_margin="20dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/tvSaveMoreMoney"
+        android:text="Keep using Rider to support the environment"
         />
 
     <Button
