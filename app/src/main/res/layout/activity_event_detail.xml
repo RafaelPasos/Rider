@@ -16,7 +16,7 @@
         android:id="@+id/tvRidePickup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pickup Location"
+        android:text="Start Location"
         android:textColor="@color/colorAccent"
         android:textSize="22sp"
         android:layout_below="@id/rider_toolbar_Event_Detail"
@@ -38,13 +38,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/spinnerSelectCar"
+        android:background="@drawable/button_primary"
+        android:onClick="selectLocation"
         android:text="Next"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:background="@drawable/button_primary"
-        android:layout_margin="@dimen/marginUIComponent"
-        android:onClick="selectLocation"
-        />
+        android:textSize="18sp" />
 
     <fragment
         android:id="@+id/eventMapFragment"
@@ -65,12 +64,12 @@
         android:layout_marginStart="@dimen/marginUIComponent"
         android:layout_marginEnd="@dimen/marginUIComponent"
         >
-
         <Button
             android:id="@+id/btn_driver_mode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="DRIVER"
+            android:background="@drawable/btn_chofer"
             android:layout_weight=".5"
             android:onClick="selectMode"
             />
@@ -79,6 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="PASSENGER"
+            android:background="@drawable/btn_pasajero"
             android:onClick="selectMode"
             android:layout_weight=".5"/>
 

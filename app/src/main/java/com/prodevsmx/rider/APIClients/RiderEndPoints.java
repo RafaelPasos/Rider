@@ -1,6 +1,7 @@
 package com.prodevsmx.rider.APIClients;
 
 import com.prodevsmx.rider.APIClients.RequestModels.CarRequest;
+import com.prodevsmx.rider.beans.BackEndModels.NewTravel;
 import com.prodevsmx.rider.beans.BackEndModels.PickUpRequest;
 
 import java.util.List;
@@ -40,8 +41,14 @@ public interface RiderEndPoints {
             @Path("id_usuario") String id_usuario
     );
 
-    @GET("/api/{id_usuario}/SimpleCarList/")
+    @GET("/api/User/{id_usuario}/SimpleCarList/")
     Call<List<CarRequest>> getCarsList(
             @Path("id_usuario") String id_usuario
+    );
+    
+    @POST("/api/Chofer/{id_chofer}/CrearViaje/")
+    Call<String> crearViaje(
+            @Body NewTravel travel,
+            @Path("id_chofer") String chofer
     );
 }

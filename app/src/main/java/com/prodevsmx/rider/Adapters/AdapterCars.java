@@ -1,6 +1,9 @@
 package com.prodevsmx.rider.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +13,12 @@ import android.widget.TextView;
 
 import com.prodevsmx.rider.R;
 import com.prodevsmx.rider.beans.CarItem;
+import com.prodevsmx.rider.utils.DrawableToBitmap;
+import com.prodevsmx.rider.utils.ImageRounder;
+import com.prodevsmx.rider.utils.RoundedCornersTransform;
+import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 /**
@@ -38,10 +46,13 @@ public class AdapterCars extends RecyclerView.Adapter<AdapterCars.ViewHolder>{
             holder.carName.setText(item.getCarTitle());
             holder.carPlates.setText(item.getCarPlates());
             //not Now
-            //Bitmap eventBitmap = ImageRounder.getRoundedBitmap(DrawableToBitmap.drawableToBitmap(item.getEventImage().getDrawable()));
-            holder.carImage.setImageBitmap(item.getCarImage());
+            //Bitmap eventBitmap = ImageRounder.getRoundedBitmap(item.getCarImage());
+           //Picasso.with(context).load(getImageUri(context, item.getCarImage())).transform(new RoundedCornersTransform()).into(holder.carImage);
+            holder.carImage.setImageBitmap(ImageRounder.getRoundedBitmap(item.getCarImage()));
             holder.itemView.setTag(item);
             }
+
+
 
     @Override public int getItemCount() {
             return items.size();

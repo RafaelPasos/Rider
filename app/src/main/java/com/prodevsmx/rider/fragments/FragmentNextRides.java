@@ -1,6 +1,7 @@
 package com.prodevsmx.rider.fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,7 +25,6 @@ public class FragmentNextRides extends android.support.v4.app.Fragment{
     View v;
     ArrayList<EventNearbyItem> eventNearbyItems = new ArrayList<>();
     RecyclerView recyclerViewEvents;
-
 
     public FragmentNextRides() {
     }
@@ -58,8 +58,6 @@ public class FragmentNextRides extends android.support.v4.app.Fragment{
 
         evento = new EventNearbyItem("https://psn.si/wp-content/uploads/2017/06/Bruno-Mars-M.jpg", "Bruno Mars", "Estadio Omnilife", "05 February 2018");
         eventNearbyItems.add(evento);
-
-
     }
 
 }

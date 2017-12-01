@@ -84,6 +84,7 @@ public class AdapterNextTrips  extends RecyclerView.Adapter<AdapterNextTrips.Vie
                     data.putString("place", eventPlace);
                     data.putString("date", eventDate);
                     Intent i = new Intent(itemView.getContext(), ActivityRideDetail.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     i.putExtras(data);
                     itemView.getContext().startActivity(i);
                 }
