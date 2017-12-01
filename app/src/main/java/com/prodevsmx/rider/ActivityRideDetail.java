@@ -128,7 +128,7 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         pass.add(item);
         PendingRequestItem item1 = new PendingRequestItem(
                 "http://www.abt.org/images/db_images/dancers/waskiweb.jpg",
-                "Arcana Macana",
+                "Mariana Picopala",
                 "Av. Puritana 6879",
                 "Pasajero",
                 "request2");
