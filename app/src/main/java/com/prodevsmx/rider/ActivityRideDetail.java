@@ -83,12 +83,13 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         setContentView(R.layout.activity_ride_detail);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLocation();
+        sp = this.getSharedPreferences("com.prodevsmx.rider.prefs", Context.MODE_PRIVATE);
         Bundle extras = getIntent().getExtras();
         String eventImageStr;
         final String eventNameStr;
         String eventId;
-        String eventPlaceStr;
-        String eventDateStr;
+        final String eventPlaceStr;
+        final String eventDateStr;
 
         eventId = extras.getString("id");
         eventImageStr = extras.getString("image");
@@ -100,9 +101,9 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         eventName = findViewById(R.id.tvEventTitleDetail);
         eventPlace = findViewById(R.id.tv_EventDetailDetail);
         eventDate = findViewById(R.id.tv_EventDateDetail);
-        eventName.setText(eventNameStr);
-        eventPlace.setText(eventPlaceStr);
-        eventDate.setText(eventDateStr);
+        eventName.setText( (sp.contains("com_prodevsmx_rider_trip_name")) ? sp.getString("com_prodevsmx_rider_trip_name", null) : eventNameStr);
+        eventPlace.setText((sp.contains("com_prodevsmx_rider_trip_place")) ? sp.getString("com_prodevsmx_rider_trip_place", null) : eventPlaceStr);
+        eventDate.setText((sp.contains("com_prodevsmx_rider_trip_date")) ? sp.getString("com_prodevsmx_rider_trip_date", null) : eventDateStr);
 
         Picasso.with(this).load(eventId).into(eventImage);
         //Picasso.with(this).load("https://graph.facebook.com/" + eventImageStr + "/picture").into(eventImage);
@@ -133,7 +134,7 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         passengers.setAdapter(adapter);
 
         onTravel = false;
-        sp = this.getSharedPreferences("com.prodevsmx.rider.prefs", Context.MODE_PRIVATE);
+
         if(sp.contains("com_prodevsmx_rider_trip_started")) {
             rideStatus = sp.getString("com_prodevsmx_rider_trip_started", null);
             onTravel = rideStatus.equals("true");
@@ -152,15 +153,15 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
                     SharedPreferences.Editor editor = sp.edit();
                     editor.remove("com_prodevsmx_rider_trip_started");
                     editor.remove("com_prodevsmx_rider_trip_name");
+                    editor.remove("com_prodevsmx_rider_trip_date");
+                    editor.remove("com_prodevsmx_rider_trip_place");
+                    editor.remove("com_prodevsmx_rider_trip_image");
                     onTravel = false;
                     editor.commit();
                     Intent i = new Intent(ActivityRideDetail.this, ActivityEndRide.class);
                     startActivity(i);
                 }else {
-                    SharedPreferences.Editor editor = sp.edit();
-                    editor.putString("com_prodevsmx_rider_trip_started","true");
-                    editor.putString("com_prodevsmx_rider_trip_name", eventNameStr);
-                    editor.commit();
+                    saveInfo(eventNameStr, eventPlaceStr, eventDateStr, "", "true");
                     onTravel = true;
                     AdapterOnRide adapter = new AdapterOnRide(pass, ActivityRideDetail.this);
                     passengers.setAdapter(adapter);
@@ -179,6 +180,16 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         });
     }
 
+    public void saveInfo(String name, String place, String date, String image, String status){
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("com_prodevsmx_rider_trip_started", (status == null) ? "" : status);
+        editor.putString("com_prodevsmx_rider_trip_name", (name==null) ? "" : name);
+        editor.putString("com_prodevsmx_rider_trip_date", (date==null) ? "" : date);
+        editor.putString("com_prodevsmx_rider_trip_image", (image==null) ? "" : image);
+        editor.putString("com_prodevsmx_rider_trip_place", (place==null) ? "" : place);
+        editor.commit();
+    }
+
     public void getLocation(){
         try {
             mFusedLocationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
@@ -193,6 +204,8 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
 
         }
     }
+
+    
 
     public void pickupUser(int pos){
         PendingRequestItem p = pass.get(pos);

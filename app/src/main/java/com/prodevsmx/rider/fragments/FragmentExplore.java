@@ -9,13 +9,18 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -31,6 +36,7 @@ import com.facebook.GraphResponse;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.prodevsmx.rider.ActivityLand;
 import com.prodevsmx.rider.Adapters.AdapterEventsNearby;
 import com.prodevsmx.rider.Models.EventResponse.EventDatum;
 import com.prodevsmx.rider.Models.EventResponse.EventResponse;
@@ -44,6 +50,7 @@ import java.util.Locale;
 import java.util.concurrent.Executor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 
 public class FragmentExplore extends android.support.v4.app.Fragment {
@@ -110,25 +117,17 @@ public class FragmentExplore extends android.support.v4.app.Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         v = view;
-        filter = (EditText) v.findViewById(R.id.etSearchBar);
-        filter.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                if(i == EditorInfo.IME_ACTION_DONE){
-                    searchStr = filter.getText().toString();
-                    text.setText("Events related with " +searchStr);
-                    getEventsFromFB();
-                }
-                return false;
-            }
-        });
+
         text = (TextView) v.findViewById(R.id.tvEventsNearby);
         recyclerViewEvents = v.findViewById(R.id.recyclerViewEventsNearby);
-        iv = v.findViewById(R.id.ivSearchIC);
         getEventsFromFB();
         populateRecyclerView();
+
     }
 
+    public void setSearchStr(String searchStr) {
+        this.searchStr = searchStr;
+    }
 
     public void getLocation(){
         try {
@@ -162,7 +161,9 @@ public class FragmentExplore extends android.support.v4.app.Fragment {
         }
     }
 
-    public void populateRecyclerView(){
+
+
+    public void  populateRecyclerView(){
         AdapterEventsNearby adapterEventsNearby = new AdapterEventsNearby(eventNearbyItems, getContext());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerViewEvents.setLayoutManager(layoutManager);

@@ -7,37 +7,6 @@
     android:focusableInTouchMode="true"
     tools:context="com.prodevsmx.rider.fragments.FragmentExplore">
 
-    <EditText
-        android:layout_below="@id/include_toolbar"
-        android:id="@+id/etSearchBar"
-        android:layout_marginTop="@dimen/marginUIComponent"
-        android:layout_marginLeft="@dimen/searchBarMargin"
-        android:layout_marginRight="@dimen/searchBarMargin"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/searchBarSize"
-        android:background="@drawable/search_bar"
-        android:hint="@string/searchEvents"
-        android:textColorHint="@color/colorTextSearchBar"
-        android:textColor="@color/colorTextSearchBar"
-        android:paddingStart="@dimen/sizeBarMarginStart"
-        android:paddingEnd="@dimen/marginUIComponent"
-        android:inputType="text"
-        android:elevation="@dimen/elevationSearchBar"
-        />
-
-    <ImageView
-        android:contentDescription="@string/searchbar"
-        android:id="@+id/ivSearchIC"
-        android:layout_width="@dimen/sizeSearchIc"
-        android:layout_height="@dimen/sizeSearchIc"
-        android:layout_below="@id/include_toolbar"
-        android:layout_marginTop="@dimen/marginSearchTop"
-        android:layout_marginStart="@dimen/marginSearchIcStart"
-        android:src="@mipmap/ic_search"
-        android:elevation="@dimen/elevationSearchBarImage"
-
-        />
-
     <TextView
         android:id="@+id/tvEventsNearby"
         android:contentDescription="User profile image"
@@ -46,7 +15,6 @@
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/etSearchBar"
         android:textColor="@color/colorPrimary"
         android:layout_marginTop="@dimen/marginUIComponent"
         android:layout_marginBottom="@dimen/marginUIComponent"
