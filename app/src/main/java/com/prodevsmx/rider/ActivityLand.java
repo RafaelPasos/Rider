@@ -11,6 +11,9 @@ import android.support.design.widget.BottomNavigationView;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.transition.Fade;
 import android.transition.Slide;
 import android.support.transition.TransitionInflater;
@@ -38,6 +41,7 @@ import butterknife.ButterKnife;
 import static android.R.color.holo_blue_light;
 
 import android.Manifest;
+import android.widget.SearchView;
 
 public class ActivityLand extends AppCompatActivity {
 
@@ -46,10 +50,12 @@ public class ActivityLand extends AppCompatActivity {
     BottomNavigationView navigationBar;
     BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
     FragmentManager fragmentManager;
+    int joker = 0;
     int[][] states;
     int[] colors;
     ColorStateList myList;
     static final int MY_PERMISSIONS_REQUEST_LOCATION = 6969;
+    MenuItem itemSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +94,7 @@ public class ActivityLand extends AppCompatActivity {
         riderToolbar = findViewById(R.id.rider_toolbar);
         riderToolbar.setTitle("");
         setSupportActionBar(riderToolbar);
+
         navigationBar = findViewById(R.id.bottomNav);
         fragmentManager = getSupportFragmentManager();
         addBottomNavigationListener();
@@ -106,11 +113,17 @@ public class ActivityLand extends AppCompatActivity {
                         Log.d("Fragment", "Explore");
                         changeBottomNavColor(true);
                         //GO TO EXPLORER PAGE
+                        if(joker == 0){
+                            joker ++;
+                        }else{
+                            itemSearch.setVisible(true);
+                        }
                         FragmentTransaction transaction = fragmentManager.beginTransaction();
                         android.support.v4.app.Fragment fragment = new FragmentExplore();
                         //fragment.setEnterTransition(new Slide(Gravity.RIGHT));
                         //fragment.setExitTransition(new Slide(Gravity.LEFT));
                         fragment.setEnterTransition(new Fade(1));
+
                         fragment.setExitTransition(new Fade(2));
                         transaction.replace(R.id.fragmentMain, fragment);
                         transaction.commit();
@@ -119,6 +132,7 @@ public class ActivityLand extends AppCompatActivity {
                         changeBottomNavColor(true);
                         //TODO: GO TO REQUESTS PAGE
                         Log.d("Fragment", "Requests");
+                        itemSearch.setVisible(false);
                         transaction = fragmentManager.beginTransaction();
                         fragment = new FragmentRequests();
                         //fragment.setEnterTransition(new Slide(Gravity.RIGHT));
@@ -132,6 +146,7 @@ public class ActivityLand extends AppCompatActivity {
                         changeBottomNavColor(true);
                         //TODO: GO TO VEHICLES PAGE
                         Log.d("Fragment", "Vehicles");
+                        itemSearch.setVisible(false);
                         transaction = fragmentManager.beginTransaction();
                         fragment = new FragmentVehicle();
                         //fragment.setEnterTransition(new Slide(Gravity.RIGHT));
@@ -145,6 +160,7 @@ public class ActivityLand extends AppCompatActivity {
                         changeBottomNavColor(true);
                         //TODO: GO TO PAST RIDES PAGE
                         Log.d("Fragment", "Past ride");
+                        itemSearch.setVisible(false);
                         transaction = fragmentManager.beginTransaction();
                         fragment = new FragmentPastRides();
                         //fragment.setEnterTransition(new Slide(Gravity.RIGHT));
@@ -155,6 +171,7 @@ public class ActivityLand extends AppCompatActivity {
                         transaction.commit();
                         return true;
                     case R.id.navBNextRides:
+                        itemSearch.setVisible(false);
                         changeBottomNavColor(true);
                         //TODO: GO TO NEXT RIDES PAGE
                         Log.d("Fragment", "Next rides");
@@ -173,18 +190,60 @@ public class ActivityLand extends AppCompatActivity {
         };
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        itemSearch = menu.findItem(R.id.searchBtn);
+
+        //SearchView sv = (SearchView) itemSearch.getActionView();
+
+        MenuItem s = riderToolbar.getMenu().findItem(R.id.searchBtn);
+        android.support.v7.widget.SearchView r = (android.support.v7.widget.SearchView) s.getActionView();
+
+        r.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Log.d("SEED","asddf");
+                FragmentExplore f = (FragmentExplore) getSupportFragmentManager().findFragmentById(R.id.fragmentMain);
+                f.setSearchStr(query);
+                f.getEventsFromFB();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                return false;
+            }
+        });
+
+        /*sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+
+                return false;
+            }
+        });  */
+
         return true;
+
     }
 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+
         if (id == R.id.profileBtn) {
             changeBottomNavColor(false);
+            itemSearch.setVisible(false);
             //TODO: GO TO PROFILE PAGE
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             android.support.v4.app.Fragment fragment = new FragmentProfile();
@@ -192,7 +251,7 @@ public class ActivityLand extends AppCompatActivity {
             //fragment.setExitTransition(new Slide(Gravity.LEFT));
             fragment.setEnterTransition(new Fade(1));
             fragment.setExitTransition(new Fade(2));
-            transaction.replace(R.id.fragmentMain, fragment);
+            transaction.replace(R.id.fragmentMain, fragment, "lol");
             transaction.commit();
             return true;
         }

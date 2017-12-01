@@ -157,10 +157,7 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
                     Intent i = new Intent(ActivityRideDetail.this, ActivityEndRide.class);
                     startActivity(i);
                 }else {
-                    SharedPreferences.Editor editor = sp.edit();
-                    editor.putString("com_prodevsmx_rider_trip_started","true");
-                    editor.putString("com_prodevsmx_rider_trip_name", eventNameStr);
-                    editor.commit();
+
                     onTravel = true;
                     AdapterOnRide adapter = new AdapterOnRide(pass, ActivityRideDetail.this);
                     passengers.setAdapter(adapter);
@@ -177,6 +174,13 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
                 }
             }
         });
+    }
+
+    public void saveInfo(String name, String place, String date, String image, String status){
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("com_prodevsmx_rider_trip_started", (status == null) ? "" : name);
+        editor.putString("com_prodevsmx_rider_trip_name", name);
+        editor.commit();
     }
 
     public void getLocation(){
