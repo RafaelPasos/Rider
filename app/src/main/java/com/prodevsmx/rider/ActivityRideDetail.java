@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -32,6 +34,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.prodevsmx.rider.Adapters.AdapterOnRide;
 import com.prodevsmx.rider.Adapters.AdapterPassengers;
 import com.prodevsmx.rider.beans.PendingRequestItem;
+import com.prodevsmx.rider.utils.Base64Utils;
+import com.prodevsmx.rider.utils.DrawableToBitmap;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -67,7 +71,10 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(20.65, -103.34);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        CameraPosition cp = new CameraPosition.Builder().zoom(15).target(sydney).build();
+        mMap.addMarker(new MarkerOptions().position(new LatLng(20.645493,-103.401261)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(20.665649,-103.393888)));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(20.676494,-103.430730)));
+        CameraPosition cp = new CameraPosition.Builder().zoom(13).target(sydney).build();
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cp));
     }
 
@@ -105,6 +112,7 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
         eventPlace.setText((sp.contains("com_prodevsmx_rider_trip_place")) ? sp.getString("com_prodevsmx_rider_trip_place", null) : eventPlaceStr);
         eventDate.setText((sp.contains("com_prodevsmx_rider_trip_date")) ? sp.getString("com_prodevsmx_rider_trip_date", null) : eventDateStr);
 
+
         Picasso.with(this).load(eventId).into(eventImage);
         //Picasso.with(this).load("https://graph.facebook.com/" + eventImageStr + "/picture").into(eventImage);
 
@@ -140,6 +148,11 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
             onTravel = rideStatus.equals("true");
             if(!eventName.equals(sp.getString("com_prodevsmx_rider_trip_name", null)))
                 button.setText("End ride " + sp.getString("com_prodevsmx_rider_trip_name", null));
+            if(sp.contains("com_prodevsmx_rider_trip_image")){
+                String stringy = sp.getString("com_prodevsmx_rider_trip_image", null);
+                Bitmap pro=Base64Utils.decodeBase64(stringy);
+                eventImage.setImageBitmap(pro);
+            }
         }
 
         if(onTravel)
@@ -160,8 +173,11 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
                     editor.commit();
                     Intent i = new Intent(ActivityRideDetail.this, ActivityEndRide.class);
                     startActivity(i);
+                    finish();
                 }else {
-                    saveInfo(eventNameStr, eventPlaceStr, eventDateStr, "", "true");
+                    Bitmap pee = DrawableToBitmap.drawableToBitmap(eventImage.getDrawable());
+                    String see = Base64Utils.encodeToBase64(pee,Bitmap.CompressFormat.JPEG, 100);
+                    saveInfo(eventNameStr, eventPlaceStr, eventDateStr, see, "true");
                     onTravel = true;
                     AdapterOnRide adapter = new AdapterOnRide(pass, ActivityRideDetail.this);
                     passengers.setAdapter(adapter);

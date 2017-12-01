@@ -48,6 +48,7 @@ public class ActivityChooseDriver extends AppCompatActivity {
 
     public void goHomePls(View view){
         Intent i = new Intent(ActivityChooseDriver.this, ActivityLand.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
         finish();
     }
