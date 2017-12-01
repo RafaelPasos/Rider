@@ -139,6 +139,7 @@ public class ActivityEventDetail extends AppCompatActivity implements OnMapReady
 
             Toast.makeText(this, "Your ride has been published to compatible users!", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(ActivityEventDetail.this, ActivityLand.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);
             finish();
         }
