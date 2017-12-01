@@ -38,13 +38,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/spinnerSelectCar"
+        android:background="@drawable/button_primary"
+        android:onClick="selectLocation"
         android:text="Next"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:background="@drawable/button_primary"
-        android:layout_margin="@dimen/marginUIComponent"
-        android:onClick="selectLocation"
-        />
+        android:textSize="18sp" />
 
     <fragment
         android:id="@+id/eventMapFragment"

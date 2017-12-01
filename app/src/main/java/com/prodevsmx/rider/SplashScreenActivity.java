@@ -19,6 +19,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d("aqui", "splash");
         sp = this.getSharedPreferences("com.prodevsmx.rider.prefs", Context.MODE_PRIVATE);
+
         if(sp.contains("com_prodevsmx_rider_trip_started")) {
             Log.d("aqui", "activityridedetail");
             if(sp.getString("com_prodevsmx_rider_trip_started", null).equals("true")){

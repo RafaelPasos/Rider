@@ -152,6 +152,7 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
                     SharedPreferences.Editor editor = sp.edit();
                     editor.remove("com_prodevsmx_rider_trip_started");
                     editor.remove("com_prodevsmx_rider_trip_name");
+                    onTravel = false;
                     editor.commit();
                     Intent i = new Intent(ActivityRideDetail.this, ActivityEndRide.class);
                     startActivity(i);
@@ -160,6 +161,7 @@ public class ActivityRideDetail extends AppCompatActivity implements OnMapReadyC
                     editor.putString("com_prodevsmx_rider_trip_started","true");
                     editor.putString("com_prodevsmx_rider_trip_name", eventNameStr);
                     editor.commit();
+                    onTravel = true;
                     AdapterOnRide adapter = new AdapterOnRide(pass, ActivityRideDetail.this);
                     passengers.setAdapter(adapter);
                     Uri.Builder builder = new Uri.Builder();

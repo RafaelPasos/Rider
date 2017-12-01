@@ -128,6 +128,7 @@ public class ActivityLogin extends AppCompatActivity{
         super.onResume();
         //justo al abrir la aplicación se manda a hacer la comprobación si el usuario tiene la sesión iniciada
         fetchUserInfo();
+
     }
 
 }

@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -24,11 +25,22 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.prodevsmx.rider.APIClients.ApiUtils;
+import com.prodevsmx.rider.APIClients.RequestModels.CarRequest;
+import com.prodevsmx.rider.APIClients.RiderEndPoints;
+import com.prodevsmx.rider.Settings.Identity;
+import com.prodevsmx.rider.beans.BackEndModels.GeoPoint;
+import com.prodevsmx.rider.beans.BackEndModels.NewTravel;
+import com.prodevsmx.rider.beans.CarItem;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ActivityEventDetail extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -41,6 +53,8 @@ public class ActivityEventDetail extends AppCompatActivity implements OnMapReady
     private GoogleMap mMap;
     ArrayList<String> cars;
     ArrayAdapter<String> adapter;
+    RiderEndPoints mRiderEndPoints;
+    String eventId;
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -63,6 +77,8 @@ public class ActivityEventDetail extends AppCompatActivity implements OnMapReady
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detail);
         cars = new ArrayList<>();
+        Bundle data = getIntent().getExtras();
+        eventId = data.getString("id");
         posActual = new LatLng(20.65, -103.34);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLocation();
@@ -82,13 +98,45 @@ public class ActivityEventDetail extends AppCompatActivity implements OnMapReady
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         carSelect.setAdapter(adapter);
         locationTV = (TextView) findViewById(R.id.txt_location);
+        mRiderEndPoints = ApiUtils.getRiderService();
+    }
+
+    public void sendDataToBackend(){
+
+        final AccessToken token = AccessToken.getCurrentAccessToken();
+        ArrayList<Double> points= new ArrayList<Double>();
+        points.add(posActual.latitude);
+        points.add(posActual.longitude);
+        NewTravel travel = new NewTravel(token.getUserId(), eventId, /*chnge for car id*/ "", new GeoPoint("Point", points));
+
+        mRiderEndPoints.crearViaje(travel, "p1").enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful()) {
+                    String responseList =  response.body();
+
+                }else {
+                    int statusCode  = response.code();
+                    // handle request errors depending on status code
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
+
     }
 
     public void selectLocation(View view){
-        if(carSelect.getVisibility() == view.GONE){
+        if(carSelect.getVisibility() == view.GONE){//Si pasajero
             Intent i = new Intent(this, ActivityChooseDriver.class);
             startActivity(i);
-        }else{
+        }else{//si chofer
+
+            sendDataToBackend();
+
             Toast.makeText(this, "Your ride has been published to compatible users!", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(ActivityEventDetail.this, ActivityLand.class);
             startActivity(i);
