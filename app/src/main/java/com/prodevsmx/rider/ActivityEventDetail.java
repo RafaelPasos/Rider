@@ -1,8 +1,6 @@
 package com.prodevsmx.rider;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -24,26 +22,36 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.prodevsmx.rider.APIClients.ApiUtils;
+import com.prodevsmx.rider.APIClients.RequestModels.CarRequest;
+import com.prodevsmx.rider.APIClients.RiderEndPoints;
+import com.prodevsmx.rider.Settings.Identity;
 import com.prodevsmx.rider.beans.CarItem;
-import com.prodevsmx.rider.fragments.FragmentExplore;
-import com.prodevsmx.rider.fragments.FragmentVehicle;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ActivityEventDetail extends AppCompatActivity implements OnMapReadyCallback {
 
     String id;
     Spinner carSelect;
     private FusedLocationProviderClient mFusedLocationClient;
-    LatLng posActual ;
+    LatLng posActual;
     TextView locationTV;
     SupportMapFragment mapFragment;
     private GoogleMap mMap;
-    ArrayList<String> cars;
+
+    ArrayList<String> carNames;
+    ArrayList<CarRequest> realCars;
     ArrayAdapter<String> adapter;
+
+    RiderEndPoints mRiderEndPoints;
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -55,7 +63,7 @@ public class ActivityEventDetail extends AppCompatActivity implements OnMapReady
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cp));
     }
 
-    public void updateRoute(LatLng latLng){
+    public void updateRoute(LatLng latLng) {
         mMap.addMarker(new MarkerOptions().position(latLng).title("Marker in your position"));
         CameraPosition cp = new CameraPosition.Builder().zoom(15).target(latLng).build();
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cp));
@@ -65,11 +73,14 @@ public class ActivityEventDetail extends AppCompatActivity implements OnMapReady
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detail);
-        cars = new ArrayList<>();
+        carNames = new ArrayList<>();
+        mRiderEndPoints = ApiUtils.getRiderService();
+        initializeViews();
+
         posActual = new LatLng(20.65, -103.34);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLocation();
-        mapFragment =  (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.eventMapFragment);
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.eventMapFragment);
         mapFragment.getMapAsync(this);
 
         Bundle b = getIntent().getExtras();
@@ -78,23 +89,23 @@ public class ActivityEventDetail extends AppCompatActivity implements OnMapReady
 
         carSelect = (Spinner) findViewById(R.id.spinnerSelectCar);
 
-        cars.add("Ford Fiesta 2016");
-        cars.add("Porsche 911 S");
+        carNames.add("Ford Fiesta 2016");
+        carNames.add("Porsche 911 S");
         adapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_spinner_item, cars);
+                android.R.layout.simple_spinner_item, carNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         carSelect.setAdapter(adapter);
         locationTV = (TextView) findViewById(R.id.txt_location);
     }
 
-    public void selectLocation(View view){
-        if(carSelect.getVisibility() == view.GONE){
+    public void selectLocation(View view) {
+        if (carSelect.getVisibility() == view.GONE) {
             Intent i = new Intent(this, ActivityChooseDriver.class);
             startActivity(i);
         }
     }
 
-    public void selectMode(View view){
+    public void selectMode(View view) {
         switch (view.getId()) {
             case R.id.btn_driver_mode:
                 carSelect.setVisibility(view.VISIBLE);
@@ -103,6 +114,32 @@ public class ActivityEventDetail extends AppCompatActivity implements OnMapReady
                 carSelect.setVisibility(view.GONE);
                 break;
         }
+    }
+
+    private void initializeViews() {
+        mRiderEndPoints.getCarsList(Identity.getUserId()).enqueue(new Callback<List<CarRequest>>() {
+            @Override
+            public void onResponse(Call<List<CarRequest>> call, Response<List<CarRequest>> response) {
+                if(response.isSuccessful()) {
+                    List<CarRequest> responseList =  response.body();
+                    for(CarRequest cr : responseList){
+                        realCars.add(cr);
+                        carNames.add(cr.getModel());
+                    }
+
+                    adapter.notifyDataSetChanged();
+                }else {
+                    int statusCode  = response.code();
+                    // handle request errors depending on status code
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<CarRequest>> call, Throwable t) {
+
+            }
+        });
+
     }
 
     public void getLocation(){

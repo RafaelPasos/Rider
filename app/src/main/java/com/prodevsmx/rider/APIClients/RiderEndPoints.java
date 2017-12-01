@@ -39,4 +39,9 @@ public interface RiderEndPoints {
     Call<List<CarRequest>> getCars(
             @Path("id_usuario") String id_usuario
     );
+
+    @GET("/api/{id_usuario}/SimpleCarList/")
+    Call<List<CarRequest>> getCarsList(
+            @Path("id_usuario") String id_usuario
+    );
 }
